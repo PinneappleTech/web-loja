@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="527.131" height="275.73" viewBox="0 0 527.131 275.73">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #ecba2b;
+      }
+
+      .cls-1 {
+        font-size: 139px;
+        font-family: SegoeUI, Segoe UI;
+      }
+
+      .cls-2 {
+        font-size: 87px;
+        font-family: InkFree, Ink Free;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #ecba2b;
+        stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <g id="Logo" transform="translate(-248.269 -157)">
+    <text id="ANNA" class="cls-1" transform="translate(323.885 307)"><tspan x="0" y="0">ANNA</tspan></text>
+    <text id="Store" class="cls-2" transform="translate(508.433 373.722)"><tspan x="0" y="0">Store</tspan></text>
+    <g id="Grupo_1" data-name="Grupo 1" transform="translate(250.769 180.147)">
+      <line id="Linha_1" data-name="Linha 1" class="cls-3" y1="137.971" transform="translate(0 0)"/>
+      <line id="Linha_2" data-name="Linha 2" class="cls-3" x2="111.037" transform="translate(0 1.97)"/>
+    </g>
+    <g id="Grupo_3" data-name="Grupo 3" transform="translate(772.9 432.2) rotate(180)">
+      <line id="Linha_1-2" data-name="Linha 1" class="cls-3" y1="137.971" transform="translate(0)"/>
+      <line id="Linha_2-2" data-name="Linha 2" class="cls-3" x2="111.037" transform="translate(0 1.97)"/>
+    </g>
+  </g>
+</svg>
