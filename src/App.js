@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import GlobalStyle from './styles/global';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,6 +13,7 @@ const App = () => (
       <Routes />
     </BrowserRouter>
     <GlobalStyle />
+    <ToastContainer autoClose={3000} />
   </>
 );
 

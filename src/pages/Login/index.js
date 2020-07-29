@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 import { FaUser } from 'react-icons/fa';
 import { MdLock } from 'react-icons/md';
 import { FiLogIn } from 'react-icons/fi';
@@ -26,6 +26,7 @@ const Login = () => {
       localStorage.setItem('@anastore/user', user);
       history.push('/dashboard');
     } catch (err) {
+      toast.error('Erro ao fazer o login. verifique seus dados');
       console.log(err);
     }
   };
