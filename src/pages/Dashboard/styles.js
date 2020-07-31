@@ -6,8 +6,7 @@ export const Container = styled.div`
   height: 100vh;
   flex-direction: column;
   align-items: flex-start;
-  background: #3D3A3A;
-
+  background: #3d3a3a;
 
   header {
     flex: 1;
@@ -21,14 +20,14 @@ export const Container = styled.div`
       height: 275px;
     }
   }
-    hr {
-      margin-top: 60px;
-      color: #ECBA2B;
-      background-color:#ECBA2B;
-      width: 100%;
-      height: 5px;
-      border: none;
-    }
+  hr {
+    color: #ecba2b;
+    background-color: #ecba2b;
+    width: 100%;
+    height: 5px;
+    border: none;
+    margin-bottom: 0;
+  }
 `;
 
 export const NavBar = styled.nav`
@@ -43,10 +42,9 @@ export const NavBar = styled.nav`
 
     li {
       list-style: none;
-      padding: 0 36px;
-      margin: 0 1px;
+      padding: 0 37px;
       width: 226px;
-      height: 280px;
+      height: 298px;
       transition: 0.5s;
 
       svg {
@@ -59,19 +57,18 @@ export const NavBar = styled.nav`
         align-items: center;
         font-size: 30px;
         text-decoration: none;
-        color: #ECBA2B;
+        color: #ecba2b;
       }
 
       &:hover {
-        background: #ECBA2B;
+        background: #ecba2b;
         svg {
-          fill: #3D3A3A;
+          fill: #3d3a3a;
         }
         a {
-          color: #3D3A3A;
+          color: #3d3a3a;
         }
       }
     }
   }
 `;
-

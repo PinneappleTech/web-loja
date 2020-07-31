@@ -102,11 +102,15 @@ export const TableContainer = styled(Table)`
   .actions {
     div {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       button {
         width: 31px;
         height: 31px;
         background: #eee;
+
+        svg {
+          margin-left: 8px;
+        }
       }
     }
   }

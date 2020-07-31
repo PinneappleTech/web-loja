@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { MdPersonAdd } from 'react-icons/md';
-import { FaSearch } from 'react-icons/fa';
+import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
+import { FaSearch, FaPen } from 'react-icons/fa';
+import { AiFillEye } from 'react-icons/ai';
 
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
@@ -54,9 +55,15 @@ function Clientes() {
                   <td>@mdo</td>
                   <td className="actions">
                     <div>
-                      <button type="button" />
-                      <button type="button" />
-                      <button type="button" />
+                      <button type="button">
+                        <AiFillEye size={12} color="#000" />
+                      </button>
+                      <button type="button">
+                        <FaPen size={12} color="#000" />
+                      </button>
+                      <button type="button">
+                        <MdDeleteForever size={12} color="#000" />
+                      </button>
                     </div>
                   </td>
                 </tr>
