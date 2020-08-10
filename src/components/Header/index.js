@@ -7,7 +7,7 @@ import Account from '../../assets/account_circle-24px.svg';
 
 import { Container } from './styles';
 
-function Header() {
+function Header({ titlePage }) {
   return (
     <Container>
       <div className="header-container">
@@ -22,7 +22,7 @@ function Header() {
           <FaHome size={22} color="#515151" />
           <span>Dashboard</span>
           <span>&gt;</span>
-          <span>Cliente</span>
+          <span>{titlePage}</span>
         </div>
       </div>
     </Container>

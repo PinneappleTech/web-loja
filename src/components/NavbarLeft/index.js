@@ -40,7 +40,7 @@ function NavbarLeft() {
         <li>
           <div className="link">
             <FaHome size={20} color="#ECBA2B" />
-            <Link to="/dashboard">Funcionários</Link>
+            <Link to="/funcionarios">Funcionários</Link>
           </div>
         </li>
         <li>

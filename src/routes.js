@@ -8,6 +8,7 @@ import Caixa from './pages/Caixa';
 import Contas from './pages/Contas';
 import Produtos from './pages/Produtos';
 import Vendas from './pages/Vendas';
+import Funcionarios from './pages/Funcionarios';
 
 const Routes = () => (
   <Switch>
@@ -18,6 +19,7 @@ const Routes = () => (
     <Route path="/contas" component={Contas} />
     <Route path="/produtos" component={Produtos} />
     <Route path="/vendas" component={Vendas} />
+    <Route path="/funcionarios" component={Funcionarios} />
   </Switch>
 );
 

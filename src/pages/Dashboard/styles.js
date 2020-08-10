@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import clienteAmarelo from '../../assets/clientes-amarelo.svg';
+import clientePreto from '../../assets/clientes-preto.svg';
+import caixaAmarelo from '../../assets/caixa.svg';
+import caixaPreto from '../../assets/caixa-preto.svg';
+import contasAmarelo from '../../assets/contas.svg';
+import contasPreto from '../../assets/contas-preto.svg';
 
 export const Container = styled.div`
   display: flex;
@@ -37,7 +43,7 @@ export const NavBar = styled.nav`
   ul {
     display: flex;
     flex-direction: row;
-    justify-items: flex-start;
+    align-items: flex-start;
     justify-items: center;
 
     li {
@@ -50,6 +56,9 @@ export const NavBar = styled.nav`
       svg {
         margin-top: 44px;
         margin-bottom: 30px;
+        &:hover {
+          fill: #3d3a3a;
+        }
       }
       a {
         display: flex;
@@ -58,6 +67,51 @@ export const NavBar = styled.nav`
         font-size: 30px;
         text-decoration: none;
         color: #ecba2b;
+
+        .image-cliente {
+          width: 152px;
+          height: 147px;
+          margin-left: 25px;
+          margin-bottom: 30px;
+          background: transparent url(${clienteAmarelo}) 0% 0% no-repeat
+            padding-box;
+          opacity: 1;
+        }
+        .image-caixa {
+          width: 200px;
+          height: 150px;
+          margin-left: 25px;
+          margin-bottom: 30px;
+          background: url(${caixaAmarelo}) no-repeat;
+        }
+        .image-contas {
+          width: 200px;
+          height: 150px;
+          margin-left: 25px;
+          margin-bottom: 30px;
+          background: url(${contasAmarelo}) no-repeat;
+        }
+        .image-produtos {
+          width: 200px;
+          height: 150px;
+          margin-left: 25px;
+          margin-bottom: 30px;
+          background: url(${clienteAmarelo}) no-repeat;
+        }
+        .image-vendas {
+          width: 200px;
+          height: 150px;
+          margin-left: 25px;
+          margin-bottom: 30px;
+          background: url(${clienteAmarelo}) no-repeat;
+        }
+        .image-sair {
+          width: 200px;
+          height: 150px;
+          margin-left: 25px;
+          margin-bottom: 30px;
+          background: url(${clienteAmarelo}) no-repeat;
+        }
       }
 
       &:hover {
@@ -67,6 +121,50 @@ export const NavBar = styled.nav`
         }
         a {
           color: #3d3a3a;
+          .image-cliente {
+            width: 152px;
+            height: 147px;
+            margin-left: 25px;
+            margin-bottom: 30px;
+            background: transparent url(${clientePreto}) 0% 0% no-repeat
+              padding-box;
+            opacity: 1;
+          }
+          .image-caixa {
+            width: 200px;
+            height: 150px;
+            margin-left: 25px;
+            margin-bottom: 30px;
+            background: url(${caixaPreto}) no-repeat;
+          }
+          .image-contas {
+            width: 200px;
+            height: 150px;
+            margin-left: 25px;
+            margin-bottom: 30px;
+            background: url(${contasPreto}) no-repeat;
+          }
+          .image-produtos {
+            width: 200px;
+            height: 150px;
+            margin-left: 25px;
+            margin-bottom: 30px;
+            background: url(${clientePreto}) no-repeat;
+          }
+          .image-vendas {
+            width: 200px;
+            height: 150px;
+            margin-left: 25px;
+            margin-bottom: 30px;
+            background: url(${clientePreto}) no-repeat;
+          }
+          .image-sair {
+            width: 200px;
+            height: 150px;
+            margin-left: 25px;
+            margin-bottom: 30px;
+            background: url(${clientePreto}) no-repeat;
+          }
         }
       }
     }
