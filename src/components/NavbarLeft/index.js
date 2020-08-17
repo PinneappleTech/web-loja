@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaBox, FaChartPie, FaChartBar, FaClipboardList, FaDolly, FaDonate, FaIdCardAlt } from 'react-icons/fa';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { GiExitDoor } from "react-icons/gi";
+import { GoPerson } from "react-icons/go";
+import { BsFillGearFill } from "react-icons/bs";
+
+
+
 
 import Logo from '../../assets/Logo.svg';
 import { Container } from './styles';
@@ -21,43 +27,43 @@ function NavbarLeft() {
         </li>
         <li>
           <div className="link">
-            <FaHome size={20} color="#ECBA2B" />
+            <GoPerson size={20} color="#ECBA2B" />
             <Link to="/clientes">Clientes</Link>
           </div>
         </li>
         <li>
           <div className="link">
-            <FaHome size={20} color="#ECBA2B" />
+            <FaDonate size={20} color="#ECBA2B" />
             <Link to="/vendas">Vendas</Link>
           </div>
         </li>
         <li>
           <div className="link">
-            <FaHome size={20} color="#ECBA2B" />
+            <FaBox size={20} color="#ECBA2B" />
             <Link to="/produtos">Produtos</Link>
           </div>
         </li>
         <li>
           <div className="link">
-            <FaHome size={20} color="#ECBA2B" />
+            <FaIdCardAlt size={20} color="#ECBA2B" />
             <Link to="/funcionarios">Funcionários</Link>
           </div>
         </li>
         <li>
           <div className="link">
-            <FaHome size={20} color="#ECBA2B" />
+            <FaDolly size={20} color="#ECBA2B" />
             <Link to="/dashboard">Fornecedores</Link>
           </div>
         </li>
         <li>
           <div className="link">
-            <FaHome size={20} color="#ECBA2B" />
+            <FaClipboardList size={20} color="#ECBA2B" />
             <Link to="/dashboard">Referências</Link>
           </div>
         </li>
         <li>
-          <div>
-            <FaHome size={20} color="#ECBA2B" />
+          <div> 
+            <FaChartPie size={20} color="#ECBA2B" />
             <Link to="/dashboard">Relatórios</Link>
           </div>
           <div>
@@ -68,7 +74,7 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
-            <FaHome size={20} color="#ECBA2B" />
+            <FaChartBar size={20} color="#ECBA2B" />
             <Link to="/dashboard">Financeiro</Link>
           </div>
           <div>
@@ -79,7 +85,7 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
-            <FaHome size={20} color="#ECBA2B" />
+            <BsFillGearFill size={20} color="#ECBA2B" />
             <Link to="/dashboard">Configuração</Link>
           </div>
           <div>
@@ -90,7 +96,7 @@ function NavbarLeft() {
         </li>
         <li>
           <div className="link">
-            <FaHome size={20} color="#ECBA2B" />
+            <GiExitDoor size={20} color="#ECBA2B" />
             <Link to="/">Sair</Link>
           </div>
         </li>

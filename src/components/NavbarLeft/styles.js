@@ -36,9 +36,10 @@ export const Container = styled.nav`
         justify-content: center;
         background: #2b2b2b;
         border: 0;
-        height: 32px;
-        width: 34px;
+        height: 38px;
+        width: 36px;
         transition: background 0.2s;
+        
 
         &:hover {
           background: #ecba2b;
