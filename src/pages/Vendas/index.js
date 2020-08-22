@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { FiSearch } from 'react-icons/fi';
+
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 
-import { Container, Content, Footer } from './styles';
+import { Container, Content, TableSale, Footer } from './styles';
 
 function Vendas() {
   return (
@@ -22,6 +24,21 @@ function Vendas() {
                 <button type="button">Aberto</button>
               </div>
             </div>
+
+            <TableSale>
+              <header>Venda</header>
+              <form>
+                <div className="input-text">
+                  <label htmlFor="cliente">Cliente</label>
+                  <div>
+                    <input type="text" name="cliente" id="cliente" />
+                    <button type="button">
+                      <FiSearch size={15} color="#ecba2b" />
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </TableSale>
           </main>
           <Footer>
             <button type="button" className="cancel">

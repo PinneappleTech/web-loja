@@ -9,7 +9,7 @@ export const Content = styled.div`
   width: 100%;
   .main {
     max-width: 1100px;
-    padding: 17px 30px;
+    padding: 16px 30px;
 
     .top-bar-status {
       display: flex;
@@ -89,5 +89,18 @@ export const Footer = styled.footer`
     &:hover {
       background: ${darken(0.08, '#28a745')};
     }
+  }
+`;
+
+export const TableSale = styled.div`
+  height: 100%;
+  border: 1px solid red;
+
+  header {
+    border-bottom: 1px solid red;
+    padding-left: 25px;
+  }
+  form {
+    padding: 16px 20px;
   }
 `;
