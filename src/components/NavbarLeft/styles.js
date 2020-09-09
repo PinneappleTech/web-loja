@@ -2,12 +2,22 @@ import styled from 'styled-components';
 
 export const Container = styled.nav`
   background: #515151;
-  width: 240px;
+  max-width: 30rem;
   height: 100vh;
+  width: 100%;
 
   header {
-    padding: 8px;
-    border-bottom: 1px solid #707070;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+    border-bottom: 0.1rem solid #707070;
+    > svg {
+      max-width: 12.6rem;
+      max-height: 6.7rem;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   ul {
@@ -15,18 +25,29 @@ export const Container = styled.nav`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-left: 20px;
-      border-bottom: 1px solid #707070;
+      padding-left: 2rem;
+      border-bottom: 0.1rem solid #707070;
       transition: background 0.2s;
+
+      li > div {
+        display: flex;
+        align-items: center;
+        div > svg {
+          max-width: 12.6rem;
+          max-height: 6.7rem;
+          width: 100%;
+          height: 100%;
+        }
+      }
       .link {
         display: flex;
         align-items: center;
-        margin: 5px 0;
+        margin: 0.5rem 0;
       }
       a {
         text-decoration: none;
-        margin-left: 20px;
-        font-size: 21px;
+        margin-left: 2rem;
+        font-size: 1.8rem;
         color: #ecba2b;
       }
 
@@ -36,8 +57,8 @@ export const Container = styled.nav`
         justify-content: center;
         background: #2b2b2b;
         border: 0;
-        height: 32px;
-        width: 34px;
+        height: 3.2rem;
+        width: 3.4rem;
         transition: background 0.2s;
 
         &:hover {

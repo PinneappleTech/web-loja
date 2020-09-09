@@ -10,18 +10,21 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body, #root {
+    font-size: 62.5%; /* 1rem = 10px */
     height: 100%;
   }
 
   body {
     background: #f5f5f5;
+    text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale;
 
   }
 
   body, input, button {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.6rem;
   }
 
   input, button {

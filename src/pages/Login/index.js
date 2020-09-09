@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { FaUser } from 'react-icons/fa';
 import { MdLock } from 'react-icons/md';
 import { FiLogIn } from 'react-icons/fi';
-import Logo from '../../assets/Logo.svg';
+import { Logo } from '../../assets/images';
 import api from '../../services/api';
 
 import { Container, Input, Button } from './styles';
@@ -27,7 +27,6 @@ const Login = () => {
       history.push('/dashboard');
     } catch (err) {
       toast.error('Erro ao fazer o login. verifique seus dados');
-      console.log(err);
     }
   };
 
@@ -43,7 +42,7 @@ const Login = () => {
 
   return (
     <Container>
-      <img src={Logo} alt="Anna Store" />
+      <Logo />
       <p>LOGIN</p>
 
       <Input>
@@ -66,7 +65,7 @@ const Login = () => {
         />
       </Input>
 
-      <Button onClick={() => handleNavigateToDashboard()}>
+      <Button type="button" onClick={() => handleNavigateToDashboard()}>
         <FiLogIn color="#FFF" size={30} />
         ENTRAR
       </Button>
