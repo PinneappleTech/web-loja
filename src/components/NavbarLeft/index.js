@@ -1,22 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaBox, FaChartPie, FaChartBar, FaClipboardList, FaDolly, FaDonate, FaIdCardAlt } from 'react-icons/fa';
+import { FaHome, FaBox, FaUsers, FaTools } from 'react-icons/fa';
+import { GiTakeMyMoney, GiExitDoor, GiStorkDelivery } from 'react-icons/gi';
+import { BsGraphUp } from 'react-icons/bs';
+import { IoIosPeople, IoIosDocument } from 'react-icons/io';
+import { HiDocumentReport } from 'react-icons/hi';
+
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { GiExitDoor } from "react-icons/gi";
-import { GoPerson } from "react-icons/go";
-import { BsFillGearFill } from "react-icons/bs";
 
 
 
 
-import Logo from '../../assets/Logo.svg';
+
+import { Logo } from '../../assets/images';
 import { Container } from './styles';
 
 function NavbarLeft() {
   return (
     <Container>
       <header>
-        <img src={Logo} alt="Logo Anna Store" width="240" height="49" />
+        <Logo />
       </header>
       <ul>
         <li>
@@ -27,13 +30,13 @@ function NavbarLeft() {
         </li>
         <li>
           <div className="link">
-            <GoPerson size={20} color="#ECBA2B" />
+            <FaUsers size={20} color="#ECBA2B" />
             <Link to="/clientes">Clientes</Link>
           </div>
         </li>
         <li>
           <div className="link">
-            <FaDonate size={20} color="#ECBA2B" />
+            <GiTakeMyMoney size={20} color="#ECBA2B" />
             <Link to="/vendas">Vendas</Link>
           </div>
         </li>
@@ -45,25 +48,25 @@ function NavbarLeft() {
         </li>
         <li>
           <div className="link">
-            <FaIdCardAlt size={20} color="#ECBA2B" />
+            <IoIosPeople size={20} color="#ECBA2B" />
             <Link to="/funcionarios">Funcionários</Link>
           </div>
         </li>
         <li>
           <div className="link">
-            <FaDolly size={20} color="#ECBA2B" />
+            <GiStorkDelivery size={20} color="#ECBA2B" />
             <Link to="/dashboard">Fornecedores</Link>
           </div>
         </li>
         <li>
           <div className="link">
-            <FaClipboardList size={20} color="#ECBA2B" />
+            <IoIosDocument size={20} color="#ECBA2B" />
             <Link to="/dashboard">Referências</Link>
           </div>
         </li>
         <li>
-          <div> 
-            <FaChartPie size={20} color="#ECBA2B" />
+          <div>
+            <HiDocumentReport size={20} color="#ECBA2B" />
             <Link to="/dashboard">Relatórios</Link>
           </div>
           <div>
@@ -74,7 +77,8 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
-            <FaChartBar size={20} color="#ECBA2B" />
+
+            <BsGraphUp size={20} color="#ECBA2B" />
             <Link to="/dashboard">Financeiro</Link>
           </div>
           <div>
@@ -85,8 +89,10 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
-            <BsFillGearFill size={20} color="#ECBA2B" />
-            <Link to="/dashboard">Configuração</Link>
+
+            <FaTools size={20} color="#ECBA2B" />
+            <Link to="/dashboard">Configurações</Link>
+
           </div>
           <div>
             <button type="button">

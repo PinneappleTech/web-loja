@@ -24,6 +24,7 @@ module.exports = {
   "rules": {
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "jsx-a11y/label-has-associated-control": "off",
   },
 };

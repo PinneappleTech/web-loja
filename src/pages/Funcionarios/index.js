@@ -35,15 +35,13 @@ function Funcionarios() {
                 </div>
               </div>
             </div>
-            <TableContainer striped bordered hover responsive>
+            <TableContainer>
               <thead>
-                <tr>
-                  <th>Cod.</th>
-                  <th>Nome do Funcionário</th>
-                  <th>Cargo</th>
-                  <th>Status</th>
-                  <th>Ações</th>
-                </tr>
+                <th>Cod.</th>
+                <th>Nome do Funcionário</th>
+                <th>Cargo</th>
+                <th>Status</th>
+                <th>Ações</th>
               </thead>
               <tbody>
                 <tr>
@@ -53,15 +51,15 @@ function Funcionarios() {
                   <td>Ativo</td>
                   <td className="actions">
                     <div>
-                      <button type="button">
+                      <div>
                         <AiFillEye size={12} color="#000" />
-                      </button>
-                      <button type="button">
+                      </div>
+                      <div>
                         <FaPen size={12} color="#000" />
-                      </button>
-                      <button type="button">
+                      </div>
+                      <div>
                         <MdDeleteForever size={12} color="#000" />
-                      </button>
+                      </div>
                     </div>
                   </td>
                 </tr>

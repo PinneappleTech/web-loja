@@ -36,16 +36,14 @@ function Produtos() {
                 </div>
               </div>
             </div>
-            <TableContainer striped bordered hover responsive>
+            <TableContainer>
               <thead>
-                <tr>
-                  <th>Cod. de barras</th>
-                  <th>Cod. do produto</th>
-                  <th>Nome</th>
-                  <th>Estoque</th>
-                  <th>Preço</th>
-                  <th>Ações</th>
-                </tr>
+                <th>Cod. de barras</th>
+                <th>Cod. do produto</th>
+                <th>Nome</th>
+                <th>Estoque</th>
+                <th>Preço</th>
+                <th>Ações</th>
               </thead>
               <tbody>
                 <tr>

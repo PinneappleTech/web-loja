@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
 import { FaSearch, FaPen } from 'react-icons/fa';
@@ -17,10 +18,10 @@ function Clientes() {
         <Content>
           <Header />
           <main className="main">
-            <button type="button">
+            <Link to="/add-clientes">
               <MdPersonAdd size={20} color="#515151" />
               Adicionar Clientes
-            </button>
+            </Link>
             <div className="box-search">
               <header>
                 <div>
@@ -35,16 +36,14 @@ function Clientes() {
                 </div>
               </div>
             </div>
-            <TableContainer striped bordered hover responsive>
+            <TableContainer>
               <thead>
-                <tr>
-                  <th>Cod.</th>
-                  <th>Nome</th>
-                  <th>CPF/CPNJ</th>
-                  <th>Telefone</th>
-                  <th>E-mail</th>
-                  <th>Ações</th>
-                </tr>
+                <th>Cod.</th>
+                <th>Nome</th>
+                <th>CPF/CPNJ</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Ações</th>
               </thead>
               <tbody>
                 <tr>
@@ -55,15 +54,15 @@ function Clientes() {
                   <td>@mdo</td>
                   <td className="actions">
                     <div>
-                      <button type="button">
-                        <AiFillEye size={12} color="#000" />
-                      </button>
-                      <button type="button">
-                        <FaPen size={12} color="#000" />
-                      </button>
-                      <button type="button">
-                        <MdDeleteForever size={12} color="#000" />
-                      </button>
+                      <div>
+                        <AiFillEye color="#000" />
+                      </div>
+                      <div type="button">
+                        <FaPen color="#000" />
+                      </div>
+                      <div type="button">
+                        <MdDeleteForever color="#000" />
+                      </div>
                     </div>
                   </td>
                 </tr>

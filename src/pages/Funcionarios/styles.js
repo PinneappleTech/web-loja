@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { Table } from 'react-bootstrap';
 
 export const Container = styled.div`
   display: flex;
@@ -97,19 +96,53 @@ export const Content = styled.div`
   }
 `;
 
-export const TableContainer = styled(Table)`
-  border: 1px solid gold;
+export const TableContainer = styled.table`
+  width: 100%;
+  thead {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    th {
+      border: 0.1rem solid #000;
+      text-align: center;
+      padding: 0.5rem 0;
+      font-size: 1.6rem;
+      color: #515151;
+      & + th {
+        border-left: none;
+      }
+    }
+  }
+  tr {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: #fff;
+
+    td {
+      border: 0.1rem solid #000;
+      text-align: center;
+      padding: 0.5rem 0;
+      font-size: 1.4rem;
+      color: #515151;
+      & + td {
+        border-left: none;
+      }
+    }
+  }
   .actions {
     div {
       display: flex;
       justify-content: space-around;
-      button {
-        width: 31px;
-        height: 31px;
-        background: #eee;
-
-        svg {
-          margin-left: 8px;
+      > div {
+        cursor: pointer;
+        width: 2rem;
+        height: 2.5rem;
+        border: 0.1rem solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        > svg {
+          size: 1rem;
         }
       }
     }
