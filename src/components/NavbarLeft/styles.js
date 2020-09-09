@@ -59,7 +59,9 @@ export const Container = styled.nav`
         border: 0;
         height: 3.2rem;
         width: 3.4rem;
+
         transition: background 0.2s;
+        
 
         &:hover {
           background: #ecba2b;

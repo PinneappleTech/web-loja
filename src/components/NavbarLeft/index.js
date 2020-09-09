@@ -7,6 +7,12 @@ import { IoIosPeople, IoIosDocument } from 'react-icons/io';
 import { HiDocumentReport } from 'react-icons/hi';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { GiExitDoor } from "react-icons/gi";
+import { GoPerson } from "react-icons/go";
+import { BsFillGearFill } from "react-icons/bs";
+
+
+
 
 import { Logo } from '../../assets/images';
 import { Container } from './styles';
@@ -73,6 +79,7 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
+
             <BsGraphUp size={20} color="#ECBA2B" />
             <Link to="/dashboard">Financeiro</Link>
           </div>
@@ -84,8 +91,10 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
+
             <FaTools size={20} color="#ECBA2B" />
             <Link to="/dashboard">Configurações</Link>
+
           </div>
           <div>
             <button type="button">
