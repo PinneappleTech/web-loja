@@ -7,8 +7,7 @@ import { IoIosPeople, IoIosDocument } from 'react-icons/io';
 import { HiDocumentReport } from 'react-icons/hi';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { GoPerson } from "react-icons/go";
-import { BsFillGearFill } from "react-icons/bs";
+
 
 
 
