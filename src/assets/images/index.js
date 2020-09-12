@@ -6,3 +6,4 @@ export { ReactComponent as Bill } from './contas.svg';
 export { ReactComponent as Product } from './produtos.svg';
 export { ReactComponent as Sale } from './vendas.svg';
 export { ReactComponent as Config } from './config.svg';
+export { ReactComponent as Logout } from './sair.svg';

@@ -11,31 +11,31 @@ export const Content = styled.div`
     max-width: 110rem;
     padding: 1.6rem 3rem;
 
-    button {
+    a {
       max-width: 18rem;
       max-height: 4.2rem;
       padding: 0.8rem;
-      width: 100%;
-      height: 100%;
-      background: #ecba2b;
+
+      background: ${props => props.theme.colors.primary};
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0.2rem 0.2rem 0.3rem #00000073;
-      border-radius: 0.3rem;
+      box-shadow: ${props => props.theme.boxShadow};
+      border-radius: ${props => props.theme.borderRadius};
       border: 0;
-
-      text-align: left;
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: #515151;
       transition: background 0.2s;
 
-      svg {
+      > svg {
         margin-right: 1rem;
       }
 
+      > span {
+        font-size: 1.5rem;
+        color: ${props => props.theme.backgroundLight};
+      }
+
       &:hover {
+        text-decoration: none;
         background: ${darken(0.08, '#ecba2b')};
         transform: translateX(1rem);
         transition: transform 0.2s;

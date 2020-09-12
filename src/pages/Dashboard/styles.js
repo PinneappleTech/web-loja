@@ -37,7 +37,7 @@ export const NavBar = styled.nav`
     margin: 0;
     height: 29rem;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 
     li {
       list-style: none;
@@ -57,6 +57,7 @@ export const NavBar = styled.nav`
           max-height: 14.7rem;
           width: 100%;
           height: 100%;
+          fill: ${props => props.theme.colors.primary};
         }
         > span {
           margin-top: 1rem;
@@ -67,12 +68,10 @@ export const NavBar = styled.nav`
         &:hover {
           text-decoration: none;
           > svg {
-            .d {
-              fill: #3d3a3a;
-            }
+            fill: ${props => props.theme.colors.backgroundDark};
           }
           span {
-            color: #3d3a3a;
+            color: ${props => props.theme.colors.backgroundDark};
           }
         }
       }

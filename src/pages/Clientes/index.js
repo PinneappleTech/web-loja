@@ -16,11 +16,11 @@ function Clientes() {
       <Container>
         <NavabarLeft />
         <Content>
-          <Header />
+          <Header titlePage="Clientes" />
           <main className="main">
             <Link to="/add-clientes">
               <MdPersonAdd size={20} color="#515151" />
-              Adicionar Clientes
+              <span>Adicionar Clientes</span>
             </Link>
             <div className="box-search">
               <header>

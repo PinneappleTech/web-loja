@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Logo, Client, Bill, Box, Product, Sale } from '../../assets/images';
+import { Logo, Client, Box, Product, Sale, Logout } from '../../assets/images';
 
 import { Container, NavBar } from './styles';
 
@@ -28,12 +28,6 @@ function Dashboard() {
             </Link>
           </li>
           <li>
-            <Link to="/contas">
-              <Bill />
-              <span>Contas</span>
-            </Link>
-          </li>
-          <li>
             <Link to="/produtos">
               <Product />
               <span>Produtos</span>
@@ -47,7 +41,7 @@ function Dashboard() {
           </li>
           <li>
             <Link to="/">
-              <Client />
+              <Logout />
               <span>Sair</span>
             </Link>
           </li>
