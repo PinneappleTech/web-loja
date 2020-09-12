@@ -8,6 +8,10 @@ import { HiDocumentReport } from 'react-icons/hi';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
+
+
+
+
 import { Logo } from '../../assets/images';
 import { Container } from './styles';
 
@@ -73,6 +77,7 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
+
             <BsGraphUp size={20} color="#ECBA2B" />
             <Link to="/dashboard">Financeiro</Link>
           </div>
@@ -84,8 +89,10 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
+
             <FaTools size={20} color="#ECBA2B" />
             <Link to="/dashboard">Configurações</Link>
+
           </div>
           <div>
             <button type="button">
