@@ -24,7 +24,7 @@ export const Input = styled.div`
   display: flex;
   align-items: center;
   width: 35rem;
-  height: 3.3rem;
+  height: 3.5rem;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 0.1rem solid #707070;
   border-radius: 0.5rem;

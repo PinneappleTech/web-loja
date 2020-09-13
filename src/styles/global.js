@@ -15,21 +15,21 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: #f5f5f5;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
+    background: ${props => props.theme.colors.background};
+    text-rendering: optimizeLegibility!important;
+    -webkit-font-smoothing: antialiased!important;
     -moz-osx-font-smoothing: grayscale;
 
   }
 
-  body, input, button {
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 1.6rem;
-  }
+body, input, button {
+  font-family: 'Roboto', -apple - system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans - serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: ${props => props.theme.font.large};
+}
 
-  input, button {
-    cursor: pointer;
-  }
+input, button {
+  cursor: pointer;
+}
 `;
 
 export default GlobalStyle;

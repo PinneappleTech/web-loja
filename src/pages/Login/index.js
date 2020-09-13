@@ -12,9 +12,11 @@ import { Container, Input, Button } from './styles';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const handleNavigateToDashboard = async () => {
+    setLoading(!loading);
     const data = {
       username,
       password,
@@ -25,8 +27,10 @@ const Login = () => {
       localStorage.setItem('@anastore/token', token);
       localStorage.setItem('@anastore/user', user);
       history.push('/dashboard');
+      setLoading(!loading);
     } catch (err) {
       toast.error('Erro ao fazer o login. verifique seus dados');
+      setLoading(!loading);
     }
   };
 
@@ -67,7 +71,7 @@ const Login = () => {
 
       <Button type="button" onClick={() => handleNavigateToDashboard()}>
         <FiLogIn color="#FFF" size={30} />
-        ENTRAR
+        {loading ? 'AGUARDE...' : 'ENTRAR'}
       </Button>
     </Container>
   );
