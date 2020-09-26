@@ -11,7 +11,7 @@ export const Content = styled.div`
     max-width: 1100px;
     padding: 17px 30px;
 
-    button {
+    > button {
       width: 180px;
       height: 42px;
       background: #ecba2b;
@@ -80,6 +80,11 @@ export const Content = styled.div`
         padding-left: 10px;
         border-radius: 4px;
 
+        div {
+          display: flex;
+          align-items: center;
+        }
+
         input {
           width: 800px;
           border: none;
@@ -133,18 +138,26 @@ export const TableContainer = styled.table`
     div {
       display: flex;
       justify-content: space-around;
-      > div {
-        cursor: pointer;
-        width: 2rem;
-        height: 2.5rem;
-        border: 0.1rem solid #eee;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        > svg {
-          size: 1rem;
-        }
-      }
     }
+  }
+`;
+
+export const ActionsGroup = styled.div``;
+
+export const Actions = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  width: 2rem;
+  height: 2rem;
+  background: ${props => props.color};
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  > svg {
+    margin: 0;
   }
 `;

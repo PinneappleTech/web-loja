@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
 import { FaSearch, FaPen } from 'react-icons/fa';
@@ -7,9 +7,31 @@ import { AiFillEye } from 'react-icons/ai';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 
-import { Container, Content, TableContainer, Footer } from './styles';
+import {
+  Container,
+  Content,
+  TableContainer,
+  ActionsGroup,
+  Actions,
+} from './styles';
+import api from '../../services/api';
 
 function Produtos() {
+  const [products, setProducts] = useState([]);
+  const token = localStorage.getItem('@anastore/token');
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      const response = await api.get('/produtos/', {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setProducts(response.data);
+    };
+    loadProducts();
+  }, [token]);
+
   return (
     <>
       <Container>
@@ -19,7 +41,6 @@ function Produtos() {
           <main className="main">
             <div className="buttons-container">
               <button type="button">Adicionar Produtos</button>
-              <button type="button">Gerar Etiqueta</button>
             </div>
 
             <div className="box-search">
@@ -46,77 +67,31 @@ function Produtos() {
                 <th>Ações</th>
               </thead>
               <tbody>
-                <tr>
-                  <td>112121221921921021</td>
-                  <td>222</td>
-                  <td>Caneta</td>
-                  <td>10</td>
-                  <td>R$10</td>
-                  <td className="actions">
-                    <div>
-                      <button type="button">
-                        <AiFillEye size={12} color="#000" />
-                      </button>
-                      <button type="button">
-                        <FaPen size={12} color="#000" />
-                      </button>
-                      <button type="button">
-                        <MdDeleteForever size={12} color="#000" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>112121221921921021</td>
-                  <td>222</td>
-                  <td>Caneta</td>
-                  <td>10</td>
-                  <td>R$10</td>
-                  <td className="actions">
-                    <div>
-                      <button type="button">
-                        <AiFillEye size={12} color="#000" />
-                      </button>
-                      <button type="button">
-                        <FaPen size={12} color="#000" />
-                      </button>
-                      <button type="button">
-                        <MdDeleteForever size={12} color="#000" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>112121221921921021</td>
-                  <td>222</td>
-                  <td>Caneta</td>
-                  <td>10</td>
-                  <td>R$10</td>
-                  <td className="actions">
-                    <div>
-                      <button type="button">
-                        <AiFillEye size={12} color="#000" />
-                      </button>
-                      <button type="button">
-                        <FaPen size={12} color="#000" />
-                      </button>
-                      <button type="button">
-                        <MdDeleteForever size={12} color="#000" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
+                {products.map(product => (
+                  <tr key={product.id}>
+                    <td>-</td>
+                    <td>{product.id}</td>
+                    <td>{product.descricao}</td>
+                    <td>{product.estoque}</td>
+                    <td>{`R$ ${product.preco}`}</td>
+                    <td className="actions">
+                      <ActionsGroup>
+                        <Actions color="#B3ADAD">
+                          <AiFillEye color="#fff" size={10} />
+                        </Actions>
+                        <Actions color="#35F28E">
+                          <FaPen color="#fff" size={10} />
+                        </Actions>
+                        <Actions color="#EB3F3F">
+                          <MdDeleteForever color="#fff" size={10} />
+                        </Actions>
+                      </ActionsGroup>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </TableContainer>
           </main>
-          <Footer>
-            <button type="button" className="cancel">
-              Cancelar
-            </button>
-            <button type="button" className="submit">
-              Cadastrar
-            </button>
-          </Footer>
         </Content>
       </Container>
     </>

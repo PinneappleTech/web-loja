@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
 import { FaSearch, FaPen } from 'react-icons/fa';
@@ -7,9 +7,30 @@ import { AiFillEye } from 'react-icons/ai';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 
-import { Container, Content, TableContainer } from './styles';
+import {
+  Container,
+  Content,
+  TableContainer,
+  ActionsGroup,
+  Actions,
+} from './styles';
+import api from '../../services/api';
 
 function Funcionarios() {
+  const [empoyllers, setEmpoyllers] = useState([]);
+  const token = localStorage.getItem('@anastore/token');
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      const response = await api.get('/usuarios/', {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setEmpoyllers(response.data);
+    };
+    loadProducts();
+  }, [token]);
   return (
     <>
       <Container>
@@ -44,25 +65,27 @@ function Funcionarios() {
                 <th>Ações</th>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Caixa</td>
-                  <td>Ativo</td>
-                  <td className="actions">
-                    <div>
-                      <div>
-                        <AiFillEye size={12} color="#000" />
-                      </div>
-                      <div>
-                        <FaPen size={12} color="#000" />
-                      </div>
-                      <div>
-                        <MdDeleteForever size={12} color="#000" />
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                {empoyllers.map(empoylle => (
+                  <tr key={empoylle.id}>
+                    <td>{empoylle.id}</td>
+                    <td>{empoylle.first_name}</td>
+                    <td>{empoylle.tipo_usuario}</td>
+                    <td>{empoylle.is_active}</td>
+                    <td className="actions">
+                      <ActionsGroup>
+                        <Actions color="#B3ADAD">
+                          <AiFillEye color="#fff" size={10} />
+                        </Actions>
+                        <Actions color="#35F28E">
+                          <FaPen color="#fff" size={10} />
+                        </Actions>
+                        <Actions color="#EB3F3F">
+                          <MdDeleteForever color="#fff" size={10} />
+                        </Actions>
+                      </ActionsGroup>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </TableContainer>
           </main>

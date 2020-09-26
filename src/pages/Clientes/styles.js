@@ -31,7 +31,7 @@ export const Content = styled.div`
 
       > span {
         font-size: 1.5rem;
-        color: ${props => props.theme.backgroundLight};
+        color: ${props => props.theme.colors.backgroundLight};
       }
 
       &:hover {
@@ -83,6 +83,10 @@ export const Content = styled.div`
         padding-left: 1rem;
         border-radius: 0.4rem;
 
+        div {
+          display: flex;
+          align-items: center;
+        }
         input {
           width: 80rem;
           border: none;
@@ -149,5 +153,25 @@ export const TableContainer = styled.table`
         }
       }
     }
+  }
+`;
+
+export const ActionsGroup = styled.div``;
+
+export const Actions = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  width: 2rem;
+  height: 2rem;
+  background: ${props => props.color};
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  > svg {
+    margin: 0;
   }
 `;
