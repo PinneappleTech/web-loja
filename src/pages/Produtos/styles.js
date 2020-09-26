@@ -41,7 +41,7 @@ export const Content = styled.div`
       }
     }
 
-    button {
+    > button {
       width: 180px;
       height: 42px;
       background: #ecba2b;
@@ -106,6 +106,11 @@ export const Content = styled.div`
         padding-left: 10px;
         border-radius: 4px;
 
+        div {
+          display: flex;
+          align-items: center;
+        }
+
         input {
           width: 800px;
           border: none;
@@ -159,63 +164,26 @@ export const TableContainer = styled.table`
     div {
       display: flex;
       justify-content: space-around;
-      button {
-        width: 31px;
-        height: 31px;
-        background: #eee;
-
-        svg {
-          margin-left: 8px;
-        }
-      }
     }
   }
 `;
 
-export const Footer = styled.footer`
-  max-width: 1100px;
-  padding: 17px 30px;
+export const ActionsGroup = styled.div``;
+
+export const Actions = styled.button`
   display: flex;
-  flex: 1;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  width: 2rem;
+  height: 2rem;
+  background: ${props => props.color};
 
-  button {
-    width: 180px;
-    height: 42px;
-    background: #ecba2b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 3px #00000073;
-    border-radius: 3px;
-    border: 0;
-
-    text-align: left;
-    font-size: 12px;
-    font-weight: bold;
-    color: #fff;
-    transition: background 0.2s;
-
-    & + button {
-      margin-left: 16px;
-    }
-
-    &:hover {
-      transition: transform 0.2s;
-    }
+  &:hover {
+    opacity: 0.5;
   }
-  .cancel {
-    background: #ed1223;
 
-    &:hover {
-      background: ${darken(0.08, '#ed1223')};
-    }
-  }
-  .submit {
-    background: #28a745;
-
-    &:hover {
-      background: ${darken(0.08, '#28a745')};
-    }
+  > svg {
+    margin: 0;
   }
 `;

@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
 import { FaSearch, FaPen } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
+import api from '../../services/api';
 
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 
-import { Container, Content, TableContainer } from './styles';
+import {
+  Container,
+  Content,
+  TableContainer,
+  ActionsGroup,
+  Actions,
+} from './styles';
 
 function Clientes() {
+  const [clients, setClients] = useState([]);
+  const token = localStorage.getItem('@anastore/token');
+
+  useEffect(() => {
+    const loadClients = async () => {
+      const response = await api.get('/clientes/', {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setClients(response.data);
+    };
+    loadClients();
+  }, [token]);
   return (
     <>
       <Container>
@@ -46,26 +67,28 @@ function Clientes() {
                 <th>Ações</th>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td className="actions">
-                    <div>
-                      <div>
-                        <AiFillEye color="#000" />
-                      </div>
-                      <div type="button">
-                        <FaPen color="#000" />
-                      </div>
-                      <div type="button">
-                        <MdDeleteForever color="#000" />
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                {clients.map(client => (
+                  <tr key={client.id || '-'}>
+                    <td>{client.id || '-'}</td>
+                    <td>{client.nome || '-'}</td>
+                    <td>{client.cpf || '-'}</td>
+                    <td>{client.fone || '-'}</td>
+                    <td>{client.email || '-'}</td>
+                    <td className="actions">
+                      <ActionsGroup>
+                        <Actions color="#B3ADAD">
+                          <AiFillEye color="#fff" size={10} />
+                        </Actions>
+                        <Actions color="#35F28E">
+                          <FaPen color="#fff" size={10} />
+                        </Actions>
+                        <Actions color="#EB3F3F">
+                          <MdDeleteForever color="#fff" size={10} />
+                        </Actions>
+                      </ActionsGroup>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </TableContainer>
           </main>
