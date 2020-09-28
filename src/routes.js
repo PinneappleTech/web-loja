@@ -10,6 +10,7 @@ import Produtos from './pages/Produtos';
 import Vendas from './pages/Vendas';
 import Funcionarios from './pages/Funcionarios';
 import AddClientes from './pages/AddClientes';
+import InfoClient from './pages/InfoClients';
 
 const Routes = () => (
   <Switch>
@@ -22,6 +23,7 @@ const Routes = () => (
     <Route path="/vendas" component={Vendas} />
     <Route path="/add-clientes" component={AddClientes} />
     <Route path="/funcionarios" component={Funcionarios} />
+    <Route path="/info-clientes" component={InfoClient} />
   </Switch>
 );
 
