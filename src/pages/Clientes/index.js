@@ -19,7 +19,7 @@ import {
 
 function Clientes() {
   const [clients, setClients] = useState([]);
-  const token = localStorage.getItem('@anastore/token');
+  const token = localStorage.getItem('@annaStore:token');
 
   useEffect(() => {
     const loadClients = async () => {

@@ -54,15 +54,18 @@ export const Content = styled.div`
           display: flex;
           flex: 1;
           margin-bottom: 0.8rem;
-          input,
-          select {
-            border: 0;
-            margin-right: 1.6rem;
-            width: 30%;
-            height: 3.2rem;
-            border-radius: 0.4rem;
-            padding: 0.8rem 0.3rem;
+          > div {
+            > input,
+            select {
+              border: 0;
+              margin-right: 1.6rem;
+              width: 30%;
+              height: 3.2rem;
+              border-radius: 0.4rem;
+              padding: 0.8rem 0.3rem;
+            }
           }
+
           .sexo {
             width: 10%;
           }

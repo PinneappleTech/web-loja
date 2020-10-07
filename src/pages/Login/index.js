@@ -1,78 +1,80 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useRef, useState, useCallback } from 'react';
+import * as Yup from 'yup';
+import { Form } from '@unform/web';
 import { toast } from 'react-toastify';
 import { FaUser } from 'react-icons/fa';
 import { MdLock } from 'react-icons/md';
 import { FiLogIn } from 'react-icons/fi';
 import { Logo } from '../../assets/images';
-import api from '../../services/api';
-
-import { Container, Input, Button } from './styles';
+import { useAuth } from '../../hooks/auth';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import { Container } from './styles';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const formRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
 
-  const handleNavigateToDashboard = async () => {
-    setLoading(!loading);
-    const data = {
-      username,
-      password,
-    };
-    try {
-      const response = await api.post('/auth/login/', data);
-      const { token, user } = response.data;
-      localStorage.setItem('@anastore/token', token);
-      localStorage.setItem('@anastore/user', user);
-      history.push('/dashboard');
-      setLoading(!loading);
-    } catch (err) {
-      toast.error('Erro ao fazer o login. verifique seus dados');
-      setLoading(!loading);
-    }
-  };
+  const { signIn } = useAuth();
 
-  function handleUsername(event) {
-    const user = event.target.value;
-    setUsername(user);
-  }
+  const handleSubmit = useCallback(
+    async data => {
+      try {
+        formRef.current.setErrors({});
+        setLoading(true);
+        const schema = Yup.object().shape({
+          username: Yup.string().required('Nome do usuário obrigatório'),
+          password: Yup.string()
+            .min(6, 'No minímo 6 digitos')
+            .required('Senha obrigatória'),
+        });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-  function handlePassword(event) {
-    const pass = event.target.value;
-    setPassword(pass);
-  }
+        await signIn({
+          username: data.username,
+          password: data.password,
+        });
+        setLoading(false);
+      } catch (err) {
+        const validationErrors = {};
+        if (err instanceof Yup.ValidationError) {
+          err.inner.forEach(error => {
+            validationErrors[error.path] = error.message;
+          });
+          formRef.current.setErrors(validationErrors);
+        }
+        toast.error('Error ao entrar no sistema verifique suas credenciais !');
+        setLoading(false);
+      }
+    },
+    [signIn],
+  );
 
   return (
     <Container>
       <Logo />
       <p>LOGIN</p>
 
-      <Input>
-        <FaUser color="#ECBA2B" size={20} />
-        <input
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <Input
+          name="username"
+          icon={FaUser}
           type="text"
           placeholder="Usuário"
-          name="username"
-          onChange={handleUsername}
         />
-      </Input>
-
-      <Input>
-        <MdLock color="#ECBA2B" size={20} />
-        <input
+        <Input
+          name="password"
+          icon={MdLock}
           type="password"
           placeholder="Senha"
-          name="password"
-          onChange={handlePassword}
         />
-      </Input>
-
-      <Button type="button" onClick={() => handleNavigateToDashboard()}>
-        <FiLogIn color="#FFF" size={30} />
-        {loading ? 'AGUARDE...' : 'ENTRAR'}
-      </Button>
+        <Button type="submit">
+          <FiLogIn color="#FFF" size={30} />
+          {loading ? '...Carregando' : 'Acessar'}
+        </Button>
+      </Form>
     </Container>
   );
 };

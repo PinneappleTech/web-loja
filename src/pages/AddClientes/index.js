@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
+import { Form } from '@unform/web';
 
 import { ImUser } from 'react-icons/im';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
+import Input from '../../components/Input';
 
 import { Container, Content, Footer } from './styles';
 
 function Clientes() {
+  const formRef = useRef(null);
+  const handleSubmit = useCallback(data => {
+    console.log(data);
+  }, []);
   return (
     <>
       <Container>
@@ -20,51 +26,79 @@ function Clientes() {
               </div>
               <span>Adicionar Clientes</span>
             </header>
-            <form>
+            <Form ref={formRef} onSubmit={handleSubmit}>
               <div className="form-left">
-                <input type="text" placeholder="Nome Completo" />
+                <Input name="nome" type="text" placeholder="Nome Completo" />
                 <div className="input-group">
-                  <input type="text" placeholder="RG" />
-                  <input type="text" placeholder="CPF/CPNJ" />
+                  <Input name="rg" type="text" placeholder="RG" />
+                  <Input name="cpf" type="text" placeholder="CPF/CPNJ" />
                 </div>
                 <div className="input-group">
-                  <input type="date" placeholder="Data de Nascimento" />
+                  <input
+                    name="data_nasc"
+                    type="date"
+                    placeholder="Data de Nascimento"
+                  />
                   <select name="sexo" id="sexo" className="sexo">
-                    <option>Masculino</option>
-                    <option>Femenino</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
                   </select>
-                  <input type="date" placeholder="Data de Cadastro" />
                 </div>
                 <div className="input-group">
-                  <input type="tel" placeholder="Fone" />
-                  <input type="tel" placeholder="Telefone" />
+                  <Input name="fone_recado" type="tel" placeholder="Celular" />
+                  <Input name="fone" type="tel" placeholder="Telefone" />
                 </div>
                 <div className="input-group">
-                  <select name="estado-civil" id="estado-civil">
+                  <select name="estado_civil" id="estado-civil">
                     <option>Casado</option>
                     <option>Solteiro</option>
                   </select>
-                  <input type="text" placeholder="Conjuge" />
+                  <Input name="conjuge" type="text" placeholder="Conjuge" />
                 </div>
                 <div className="input-group">
-                  <input type="text" placeholder="Apelido" />
-                  <input type="text" placeholder="Afiliação" />
+                  <Input name="apelido" type="text" placeholder="Apelido" />
+                  <Input name="filiação" type="text" placeholder="Afiliação" />
                 </div>
-                <input type="email" placeholder="Endereço de E-mail" />
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="Endereço de E-mail"
+                />
                 <div className="input-group">
-                  <input
+                  <Input
                     type="text"
                     placeholder="Endereço"
                     className="endereco"
+                    name="logradouro"
                   />
-                  <input type="text" placeholder="Nº" className="number" />
+                  <Input
+                    name="numero"
+                    type="text"
+                    placeholder="Nº"
+                    className="number"
+                  />
                 </div>
                 <div className="input-group">
-                  <input type="text" placeholder="Cidade" className="cidade" />
-                  <input type="text" placeholder="UF" className="uf" />
-                  <input type="text" placeholder="CEP" className="cep" />
+                  <Input
+                    name="cidade"
+                    type="text"
+                    placeholder="Cidade"
+                    className="cidade"
+                  />
+                  <Input
+                    name="uf"
+                    type="text"
+                    placeholder="UF"
+                    className="uf"
+                  />
+                  <Input
+                    name="cep"
+                    type="text"
+                    placeholder="CEP"
+                    className="cep"
+                  />
                 </div>
-                <input type="text" placeholder="Bairro" />
+                <iInputnput name="bairro" type="text" placeholder="Bairro" />
               </div>
               <div className="form-right">
                 <div className="container-header">
@@ -77,12 +111,12 @@ function Clientes() {
                         type="checkbox"
                         id="ativo"
                         name="ativo"
-                        value="ativo"
+                        value="1"
                       />
                       <label htmlFor="ativo">Ativo</label>
                     </div>
                     <div className="checkbox-input">
-                      <input type="checkbox" id="spc" name="spc" value="spc" />
+                      <input type="checkbox" id="spc" name="spc" value="2" />
                       <label htmlFor="spc">Spc</label>
                     </div>
                     <div className="checkbox-input">
@@ -90,7 +124,7 @@ function Clientes() {
                         type="checkbox"
                         id="suspenso"
                         name="suspenso"
-                        value="suspenso"
+                        value="3"
                       />
                       <label htmlFor="suspenso">Suspenso</label>
                     </div>
@@ -98,8 +132,8 @@ function Clientes() {
                       <input
                         type="checkbox"
                         id="ficha-impresa"
-                        name="ficha-impresa"
-                        value="ficha-impresa"
+                        name="impreso"
+                        value="4"
                       />
                       <label htmlFor="ficha-impresa">Ficha Impresa</label>
                     </div>
@@ -110,22 +144,30 @@ function Clientes() {
                       <div className="success" />
                     </div>
                     <div className="limite-input">
-                      <label htmlFor="limite">Limite de Crédito</label>
-                      <input name="limite" type="text" />
+                      <label htmlFor="credito">Limite de Crédito</label>
+                      <input name="credito" type="text" />
                     </div>
                   </div>
                 </div>
                 <hr />
                 <div className="container-footer">
                   <fieldset>
-                    <legend>Informações Adicionais</legend>
-                    <input type="text" placeholder="End. de Entrega" />
+                    <legend>Informações Adicionais (Opicional)</legend>
+                    <Input
+                      name="end_entrega"
+                      type="text"
+                      placeholder="End. de Entrega"
+                    />
                     <div className="input-group">
-                      <input type="text" placeholder="Cidade" />
-                      <input type="text" placeholder="UF" />
-                      <input type="text" placeholder="CEP" />
+                      <Input name="cidade" type="text" placeholder="Cidade" />
+                      <Input name="uf" type="text" placeholder="UF" />
+                      <Input name="cep" type="text" placeholder="CEP" />
                     </div>
-                    <input type="text" placeholder="Ponto de Refêrencia" />
+                    <Input
+                      name="ponto_ref"
+                      type="text"
+                      placeholder="Ponto de Refêrencia"
+                    />
                   </fieldset>
                   <fieldset>
                     <legend>Observações</legend>
@@ -133,16 +175,16 @@ function Clientes() {
                   </fieldset>
                 </div>
               </div>
-            </form>
+              <Footer>
+                <button type="button" className="cancel">
+                  Cancelar
+                </button>
+                <button type="submit" className="submit">
+                  Cadastrar
+                </button>
+              </Footer>
+            </Form>
           </main>
-          <Footer>
-            <button type="button" className="cancel">
-              Cancelar
-            </button>
-            <button type="button" className="submit">
-              Cadastrar
-            </button>
-          </Footer>
         </Content>
       </Container>
     </>

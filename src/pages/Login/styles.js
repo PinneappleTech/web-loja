@@ -18,29 +18,12 @@ export const Container = styled.div`
     color: #707070;
     font-size: 2.2rem;
   }
-`;
 
-export const Input = styled.div`
-  display: flex;
-  align-items: center;
-  width: 35rem;
-  height: 3.5rem;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  border: 0.1rem solid #707070;
-  border-radius: 0.5rem;
-  opacity: 0.7;
-  margin-top: 2.4rem;
-
-  svg {
-    margin: 1rem;
-  }
-
-  input {
-    border: none;
-    color: #ecba2b;
-
-    ::placeholder {
-      color: #ecba2b;
+  form {
+    > button {
+      > svg {
+        margin: 0 1rem;
+      }
     }
   }
 `;
@@ -62,9 +45,5 @@ export const Button = styled.button`
 
   &:hover {
     background: ${darken(0.2, '#ECBA2B')};
-  }
-
-  svg {
-    margin: 0 1rem;
   }
 `;
