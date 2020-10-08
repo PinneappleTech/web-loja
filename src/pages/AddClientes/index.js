@@ -2,13 +2,16 @@ import React, { useRef, useState } from 'react';
 
 import { Form } from '@unform/web';
 import { ImUser } from 'react-icons/im';
+import { toast } from 'react-toastify';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 
 import { Container, Content, Footer } from './styles';
+import api from '../../services/api';
 
 function Clientes() {
   const formRef = useRef(null);
+  const token = localStorage.getItem('@annaStore:token');
   const [formInputData, setFormInputData] = useState({});
 
   const handleInputSbmit = event => {
@@ -16,8 +19,7 @@ function Clientes() {
     setFormInputData({ ...formInputData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    console.log(formInputData);
+  const handleSubmit = async () => {
     const {
       nome,
       rg,
@@ -31,7 +33,7 @@ function Clientes() {
       apelido,
       filiacao,
       email,
-      logadouro,
+      logradouro,
       numero,
       cidade,
       uf,
@@ -39,7 +41,7 @@ function Clientes() {
       bairro,
     } = formInputData;
 
-    const dateSubmit = {
+    const dataSubmit = {
       nome,
       rg,
       cpf,
@@ -53,14 +55,28 @@ function Clientes() {
       filiacao,
       email,
       endereco: {
-        logadouro,
+        logradouro,
         numero,
         cidade,
         uf,
         cep,
         bairro,
       },
+      credito: 1500,
     };
+
+    try {
+      const response = await api.post('/clientes/', dataSubmit, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      console.log(response.data);
+      toast.success('cadastrou');
+    } catch (error) {
+      console.log(error);
+      toast.error('Deu error');
+    }
   };
   return (
     <>
@@ -138,8 +154,11 @@ function Clientes() {
                     onChange={handleInputSbmit}
                     defaultValue=""
                   >
-                    <option>Casado</option>
-                    <option>Solteiro</option>
+                    <option value="1">Casado(a)</option>
+                    <option value="2">Divorciado(a)</option>
+                    <option value="3">Separado(a)</option>
+                    <option value="4">Solteiro(a)</option>
+                    <option value="5">Viuvo(a)</option>
                   </select>
                   <input
                     type="text"
@@ -158,7 +177,7 @@ function Clientes() {
                   <input
                     type="text"
                     placeholder="Afiliação"
-                    name="filiação"
+                    name="filiacao"
                     onChange={handleInputSbmit}
                   />
                 </div>
@@ -173,7 +192,7 @@ function Clientes() {
                     type="text"
                     placeholder="Endereço"
                     className="endereco"
-                    name="logadouro"
+                    name="logradouro"
                     onChange={handleInputSbmit}
                   />
                   <input
@@ -232,7 +251,7 @@ function Clientes() {
                       <label htmlFor="ativo">Ativo</label>
                     </div>
                     <div className="checkbox-input">
-                      <input type="checkbox" id="spc" name="spc" value="spc" />
+                      <input type="checkbox" id="spc" name="spc" value="2" />
                       <label htmlFor="spc">Spc</label>
                     </div>
                     <div className="checkbox-input">
@@ -240,7 +259,7 @@ function Clientes() {
                         type="checkbox"
                         id="suspenso"
                         name="staus"
-                        value="2"
+                        value="3"
                         onChange={handleInputSbmit}
                       />
                       <label htmlFor="suspenso">Suspenso</label>
@@ -250,7 +269,7 @@ function Clientes() {
                         type="checkbox"
                         id="ficha-impresa"
                         name="status"
-                        value="3"
+                        value="4"
                         onChange={handleInputSbmit}
                       />
                       <label htmlFor="ficha-impresa">Ficha Impresa</label>
@@ -262,11 +281,12 @@ function Clientes() {
                       <div className="success" />
                     </div>
                     <div className="limite-input">
-                      <label htmlFor="limite">Limite de Crédito</label>
+                      <label htmlFor="credito">Limite de Crédito</label>
                       <input
                         type="text"
-                        name="limite"
-                        onChange={handleInputSbmit}
+                        name="credito"
+                        placeholder="R$ 1.500,00"
+                        disabled
                       />
                     </div>
                   </div>
