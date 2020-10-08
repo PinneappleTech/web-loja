@@ -18,7 +18,7 @@ import api from '../../services/api';
 
 function Produtos() {
   const [products, setProducts] = useState([]);
-  const token = localStorage.getItem('@anastore/token');
+  const token = localStorage.getItem('@annaStore:token');
 
   useEffect(() => {
     const loadProducts = async () => {

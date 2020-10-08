@@ -22,7 +22,7 @@ function Dashboard() {
             </Link>
           </li>
           <li>
-            <Link to="/caixa">
+            <Link to="/vendas">
               <Box />
               <span>Caixa</span>
             </Link>

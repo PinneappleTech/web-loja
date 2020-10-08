@@ -3,7 +3,7 @@ const theme = {
     background: '#f5f5f5',
     backgroundLight: '#515151',
     backgroundDark: '#2B2B2B',
-
+    white: '#fff',
     primary: '#ECBA2B',
     primaryLight: '#FFC92E',
     primaryDark: '#ECB107',
@@ -15,6 +15,8 @@ const theme = {
     dangerLight: '#FF6B6B',
     danger: '#EB6363',
     dangerDark: '#EB3F3F',
+
+    textColor: '#707070',
   },
   font: {
     dafault: '1.6rem',

@@ -1,12 +1,83 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
+import { Form } from '@unform/web';
 import { ImUser } from 'react-icons/im';
+import { toast } from 'react-toastify';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 
 import { Container, Content, Footer } from './styles';
+import api from '../../services/api';
 
 function Clientes() {
+  const formRef = useRef(null);
+  const token = localStorage.getItem('@annaStore:token');
+  const [formInputData, setFormInputData] = useState({});
+
+  const handleInputSbmit = event => {
+    const { name, value } = event.target;
+    setFormInputData({ ...formInputData, [name]: value });
+  };
+
+  const handleSubmit = async () => {
+    const {
+      nome,
+      rg,
+      cpf,
+      data_nasc,
+      sexo,
+      fone_recado,
+      fone,
+      estado_civil,
+      conjuge,
+      apelido,
+      filiacao,
+      email,
+      logradouro,
+      numero,
+      cidade,
+      uf,
+      cep,
+      bairro,
+    } = formInputData;
+
+    const dataSubmit = {
+      nome,
+      rg,
+      cpf,
+      data_nasc,
+      sexo,
+      fone_recado,
+      fone,
+      estado_civil,
+      conjuge,
+      apelido,
+      filiacao,
+      email,
+      endereco: {
+        logradouro,
+        numero,
+        cidade,
+        uf,
+        cep,
+        bairro,
+      },
+      credito: 1500,
+    };
+
+    try {
+      const response = await api.post('/clientes/', dataSubmit, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      console.log(response.data);
+      toast.success('cadastrou');
+    } catch (error) {
+      console.log(error);
+      toast.error('Deu error');
+    }
+  };
   return (
     <>
       <Container>
@@ -20,51 +91,147 @@ function Clientes() {
               </div>
               <span>Adicionar Clientes</span>
             </header>
-            <form>
+            <Form ref={formRef} onSubmit={handleSubmit}>
               <div className="form-left">
-                <input type="text" placeholder="Nome Completo" />
+                <input
+                  name="nome"
+                  type="text"
+                  placeholder="Nome Completo"
+                  onChange={handleInputSbmit}
+                />
                 <div className="input-group">
-                  <input type="text" placeholder="RG" />
-                  <input type="text" placeholder="CPF/CPNJ" />
+                  <input
+                    type="text"
+                    placeholder="RG"
+                    name="rg"
+                    onChange={handleInputSbmit}
+                  />
+                  <input
+                    type="text"
+                    placeholder="CPF/CPNJ"
+                    name="cpf"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
                 <div className="input-group">
-                  <input type="date" placeholder="Data de Nascimento" />
-                  <select name="sexo" id="sexo" className="sexo">
-                    <option>Masculino</option>
-                    <option>Femenino</option>
+                  <input
+                    type="date"
+                    placeholder="Data de Nascimento"
+                    name="data_nasc"
+                    onChange={handleInputSbmit}
+                  />
+                  <select
+                    name="sexo"
+                    id="sexo"
+                    onChange={handleInputSbmit}
+                    defaultValue=""
+                  >
+                    <option value="" selected disabled>
+                      Selecione o genero
+                    </option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
                   </select>
-                  <input type="date" placeholder="Data de Cadastro" />
                 </div>
                 <div className="input-group">
-                  <input type="tel" placeholder="Fone" />
-                  <input type="tel" placeholder="Telefone" />
+                  <input
+                    type="tel"
+                    placeholder="Fone"
+                    name="fone_recado"
+                    onChange={handleInputSbmit}
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Telefone"
+                    name="fone"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
                 <div className="input-group">
-                  <select name="estado-civil" id="estado-civil">
-                    <option>Casado</option>
-                    <option>Solteiro</option>
+                  <select
+                    name="estado_civil"
+                    id="estado-civil"
+                    onChange={handleInputSbmit}
+                    defaultValue=""
+                  >
+                    <option value="1">Casado(a)</option>
+                    <option value="2">Divorciado(a)</option>
+                    <option value="3">Separado(a)</option>
+                    <option value="4">Solteiro(a)</option>
+                    <option value="5">Viuvo(a)</option>
                   </select>
-                  <input type="text" placeholder="Conjuge" />
+                  <input
+                    type="text"
+                    placeholder="Conjuge"
+                    name="conjuge"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
                 <div className="input-group">
-                  <input type="text" placeholder="Apelido" />
-                  <input type="text" placeholder="Afiliação" />
+                  <input
+                    type="text"
+                    placeholder="Apelido"
+                    name="apelido"
+                    onChange={handleInputSbmit}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Afiliação"
+                    name="filiacao"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
-                <input type="email" placeholder="Endereço de E-mail" />
+                <input
+                  type="email"
+                  placeholder="Endereço de E-mail"
+                  name="email"
+                  onChange={handleInputSbmit}
+                />
                 <div className="input-group">
                   <input
                     type="text"
                     placeholder="Endereço"
                     className="endereco"
+                    name="logradouro"
+                    onChange={handleInputSbmit}
                   />
-                  <input type="text" placeholder="Nº" className="number" />
+                  <input
+                    type="text"
+                    placeholder="Nº"
+                    className="number"
+                    name="numero"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
                 <div className="input-group">
-                  <input type="text" placeholder="Cidade" className="cidade" />
-                  <input type="text" placeholder="UF" className="uf" />
-                  <input type="text" placeholder="CEP" className="cep" />
+                  <input
+                    type="text"
+                    placeholder="Cidade"
+                    className="cidade"
+                    name="cidade"
+                    onChange={handleInputSbmit}
+                  />
+                  <input
+                    type="text"
+                    placeholder="UF"
+                    className="uf"
+                    name="uf"
+                    onChange={handleInputSbmit}
+                  />
+                  <input
+                    type="text"
+                    placeholder="CEP"
+                    className="cep"
+                    name="cep"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
-                <input type="text" placeholder="Bairro" />
+                <input
+                  type="text"
+                  placeholder="Bairro"
+                  name="bairro"
+                  onChange={handleInputSbmit}
+                />
               </div>
               <div className="form-right">
                 <div className="container-header">
@@ -76,21 +243,24 @@ function Clientes() {
                       <input
                         type="checkbox"
                         id="ativo"
-                        name="ativo"
-                        value="ativo"
+                        value="1"
+                        name="status"
+                        onChange={handleInputSbmit}
+                        checked
                       />
                       <label htmlFor="ativo">Ativo</label>
                     </div>
                     <div className="checkbox-input">
-                      <input type="checkbox" id="spc" name="spc" value="spc" />
+                      <input type="checkbox" id="spc" name="spc" value="2" />
                       <label htmlFor="spc">Spc</label>
                     </div>
                     <div className="checkbox-input">
                       <input
                         type="checkbox"
                         id="suspenso"
-                        name="suspenso"
-                        value="suspenso"
+                        name="staus"
+                        value="3"
+                        onChange={handleInputSbmit}
                       />
                       <label htmlFor="suspenso">Suspenso</label>
                     </div>
@@ -98,8 +268,9 @@ function Clientes() {
                       <input
                         type="checkbox"
                         id="ficha-impresa"
-                        name="ficha-impresa"
-                        value="ficha-impresa"
+                        name="status"
+                        value="4"
+                        onChange={handleInputSbmit}
                       />
                       <label htmlFor="ficha-impresa">Ficha Impresa</label>
                     </div>
@@ -110,8 +281,13 @@ function Clientes() {
                       <div className="success" />
                     </div>
                     <div className="limite-input">
-                      <label htmlFor="limite">Limite de Crédito</label>
-                      <input name="limite" type="text" />
+                      <label htmlFor="credito">Limite de Crédito</label>
+                      <input
+                        type="text"
+                        name="credito"
+                        placeholder="R$ 1.500,00"
+                        disabled
+                      />
                     </div>
                   </div>
                 </div>
@@ -132,17 +308,17 @@ function Clientes() {
                     <textarea name="obs" id="obs" cols="10" rows="5" />
                   </fieldset>
                 </div>
+                <Footer>
+                  <button type="button" className="cancel">
+                    Cancelar
+                  </button>
+                  <button type="submit" className="submit">
+                    Cadastrar
+                  </button>
+                </Footer>
               </div>
-            </form>
+            </Form>
           </main>
-          <Footer>
-            <button type="button" className="cancel">
-              Cancelar
-            </button>
-            <button type="button" className="submit">
-              Cadastrar
-            </button>
-          </Footer>
         </Content>
       </Container>
     </>
