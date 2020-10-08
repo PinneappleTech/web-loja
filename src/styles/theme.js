@@ -15,6 +15,8 @@ const theme = {
     dangerLight: '#FF6B6B',
     danger: '#EB6363',
     dangerDark: '#EB3F3F',
+
+    textColor: '#707070',
   },
   font: {
     dafault: '1.6rem',

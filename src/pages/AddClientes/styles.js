@@ -7,12 +7,10 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100vw;
-
   .main {
     margin: 1.4rem 0.8rem;
     border: 1px solid #515151;
     border-radius: 0.3rem 0 0 0;
-
     > header {
       display: flex;
       align-items: center;
@@ -32,40 +30,35 @@ export const Content = styled.div`
         color: #515151;
       }
     }
-
     > form {
-      margin: 1.6rem;
+      margin: 0 1.6rem;
+      margin-bottom: 0.8rem;
       height: 100%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-
       .form-left {
         margin-top: 1.6rem;
         > input {
           border: 0;
-          width: 96.5%;
+          width: 95%;
           height: 3.2rem;
           border-radius: 0.4rem;
           padding-left: 0.8rem;
           margin-bottom: 0.8rem;
         }
-
         .input-group {
           display: flex;
           flex: 1;
           margin-bottom: 0.8rem;
-          > div {
-            > input,
-            select {
-              border: 0;
-              margin-right: 1.6rem;
-              width: 30%;
-              height: 3.2rem;
-              border-radius: 0.4rem;
-              padding: 0.8rem 0.3rem;
-            }
+          input,
+          select {
+            border: 0;
+            margin-right: 1.6rem;
+            width: 46%;
+            height: 3.2rem;
+            border-radius: 0.4rem;
+            padding: 0.8rem 0.3rem;
           }
-
           .sexo {
             width: 10%;
           }
@@ -109,7 +102,6 @@ export const Content = styled.div`
             }
           }
         }
-
         > .container-footer {
           fieldset {
             width: 100%;
@@ -129,6 +121,7 @@ export const Content = styled.div`
             }
             > textarea {
               width: 100%;
+              height: 6.5rem;
               border: 0;
               border-radius: 0.4rem;
             }
@@ -173,7 +166,6 @@ export const Content = styled.div`
         font-weight: 600;
       }
     }
-
     .status-limite {
       display: flex;
       align-items: center;
@@ -183,7 +175,6 @@ export const Content = styled.div`
     .status {
       display: flex;
       align-items: center;
-
       span {
         font-size: 1.4rem;
         color: #515151;
@@ -207,7 +198,6 @@ export const Content = styled.div`
         font-weight: 600;
         margin-right: 0.8rem;
       }
-
       input {
         border: 0;
       }
@@ -220,7 +210,7 @@ export const Footer = styled.footer`
   display: flex;
   width: 100%;
   justify-content: flex-end;
-
+  margin-top: 0.8rem;
   button {
     width: 18rem;
     height: 4.2rem;
@@ -232,31 +222,26 @@ export const Footer = styled.footer`
     border-radius: 0.3rem;
     border: 0;
     margin-right: 0.8rem;
-
     text-align: left;
     font-size: 1.2rem;
     font-weight: bold;
     color: #fff;
     transition: background 0.2s;
-
     & + button {
       margin-left: 1.6rem;
     }
-
     &:hover {
       transition: transform 0.2s;
     }
   }
   .cancel {
     background: #ed1223;
-
     &:hover {
       background: ${darken(0.08, '#ed1223')};
     }
   }
   .submit {
     background: #28a745;
-
     &:hover {
       background: ${darken(0.08, '#28a745')};
     }

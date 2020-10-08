@@ -1,18 +1,67 @@
-import React, { useCallback, useRef } from 'react';
-import { Form } from '@unform/web';
+import React, { useRef, useState } from 'react';
 
+import { Form } from '@unform/web';
 import { ImUser } from 'react-icons/im';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
-import Input from '../../components/Input';
 
 import { Container, Content, Footer } from './styles';
 
 function Clientes() {
   const formRef = useRef(null);
-  const handleSubmit = useCallback(data => {
-    console.log(data);
-  }, []);
+  const [formInputData, setFormInputData] = useState({});
+
+  const handleInputSbmit = event => {
+    const { name, value } = event.target;
+    setFormInputData({ ...formInputData, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    console.log(formInputData);
+    const {
+      nome,
+      rg,
+      cpf,
+      data_nasc,
+      sexo,
+      fone_recado,
+      fone,
+      estado_civil,
+      conjuge,
+      apelido,
+      filiacao,
+      email,
+      logadouro,
+      numero,
+      cidade,
+      uf,
+      cep,
+      bairro,
+    } = formInputData;
+
+    const dateSubmit = {
+      nome,
+      rg,
+      cpf,
+      data_nasc,
+      sexo,
+      fone_recado,
+      fone,
+      estado_civil,
+      conjuge,
+      apelido,
+      filiacao,
+      email,
+      endereco: {
+        logadouro,
+        numero,
+        cidade,
+        uf,
+        cep,
+        bairro,
+      },
+    };
+  };
   return (
     <>
       <Container>
@@ -28,77 +77,142 @@ function Clientes() {
             </header>
             <Form ref={formRef} onSubmit={handleSubmit}>
               <div className="form-left">
-                <Input name="nome" type="text" placeholder="Nome Completo" />
+                <input
+                  name="nome"
+                  type="text"
+                  placeholder="Nome Completo"
+                  onChange={handleInputSbmit}
+                />
                 <div className="input-group">
-                  <Input name="rg" type="text" placeholder="RG" />
-                  <Input name="cpf" type="text" placeholder="CPF/CPNJ" />
+                  <input
+                    type="text"
+                    placeholder="RG"
+                    name="rg"
+                    onChange={handleInputSbmit}
+                  />
+                  <input
+                    type="text"
+                    placeholder="CPF/CPNJ"
+                    name="cpf"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
                 <div className="input-group">
                   <input
-                    name="data_nasc"
                     type="date"
                     placeholder="Data de Nascimento"
+                    name="data_nasc"
+                    onChange={handleInputSbmit}
                   />
-                  <select name="sexo" id="sexo" className="sexo">
+                  <select
+                    name="sexo"
+                    id="sexo"
+                    onChange={handleInputSbmit}
+                    defaultValue=""
+                  >
+                    <option value="" selected disabled>
+                      Selecione o genero
+                    </option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                   </select>
                 </div>
                 <div className="input-group">
-                  <Input name="fone_recado" type="tel" placeholder="Celular" />
-                  <Input name="fone" type="tel" placeholder="Telefone" />
+                  <input
+                    type="tel"
+                    placeholder="Fone"
+                    name="fone_recado"
+                    onChange={handleInputSbmit}
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Telefone"
+                    name="fone"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
                 <div className="input-group">
-                  <select name="estado_civil" id="estado-civil">
+                  <select
+                    name="estado_civil"
+                    id="estado-civil"
+                    onChange={handleInputSbmit}
+                    defaultValue=""
+                  >
                     <option>Casado</option>
                     <option>Solteiro</option>
                   </select>
-                  <Input name="conjuge" type="text" placeholder="Conjuge" />
+                  <input
+                    type="text"
+                    placeholder="Conjuge"
+                    name="conjuge"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
                 <div className="input-group">
-                  <Input name="apelido" type="text" placeholder="Apelido" />
-                  <Input name="filiação" type="text" placeholder="Afiliação" />
+                  <input
+                    type="text"
+                    placeholder="Apelido"
+                    name="apelido"
+                    onChange={handleInputSbmit}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Afiliação"
+                    name="filiação"
+                    onChange={handleInputSbmit}
+                  />
                 </div>
-                <Input
-                  name="email"
+                <input
                   type="email"
                   placeholder="Endereço de E-mail"
+                  name="email"
+                  onChange={handleInputSbmit}
                 />
                 <div className="input-group">
-                  <Input
+                  <input
                     type="text"
                     placeholder="Endereço"
                     className="endereco"
-                    name="logradouro"
+                    name="logadouro"
+                    onChange={handleInputSbmit}
                   />
-                  <Input
-                    name="numero"
+                  <input
                     type="text"
                     placeholder="Nº"
                     className="number"
+                    name="numero"
+                    onChange={handleInputSbmit}
                   />
                 </div>
                 <div className="input-group">
-                  <Input
-                    name="cidade"
+                  <input
                     type="text"
                     placeholder="Cidade"
                     className="cidade"
+                    name="cidade"
+                    onChange={handleInputSbmit}
                   />
-                  <Input
-                    name="uf"
+                  <input
                     type="text"
                     placeholder="UF"
                     className="uf"
+                    name="uf"
+                    onChange={handleInputSbmit}
                   />
-                  <Input
-                    name="cep"
+                  <input
                     type="text"
                     placeholder="CEP"
                     className="cep"
+                    name="cep"
+                    onChange={handleInputSbmit}
                   />
                 </div>
-                <iInputnput name="bairro" type="text" placeholder="Bairro" />
+                <input
+                  type="text"
+                  placeholder="Bairro"
+                  name="bairro"
+                  onChange={handleInputSbmit}
+                />
               </div>
               <div className="form-right">
                 <div className="container-header">
@@ -110,21 +224,24 @@ function Clientes() {
                       <input
                         type="checkbox"
                         id="ativo"
-                        name="ativo"
                         value="1"
+                        name="status"
+                        onChange={handleInputSbmit}
+                        checked
                       />
                       <label htmlFor="ativo">Ativo</label>
                     </div>
                     <div className="checkbox-input">
-                      <input type="checkbox" id="spc" name="spc" value="2" />
+                      <input type="checkbox" id="spc" name="spc" value="spc" />
                       <label htmlFor="spc">Spc</label>
                     </div>
                     <div className="checkbox-input">
                       <input
                         type="checkbox"
                         id="suspenso"
-                        name="suspenso"
-                        value="3"
+                        name="staus"
+                        value="2"
+                        onChange={handleInputSbmit}
                       />
                       <label htmlFor="suspenso">Suspenso</label>
                     </div>
@@ -132,8 +249,9 @@ function Clientes() {
                       <input
                         type="checkbox"
                         id="ficha-impresa"
-                        name="impreso"
-                        value="4"
+                        name="status"
+                        value="3"
+                        onChange={handleInputSbmit}
                       />
                       <label htmlFor="ficha-impresa">Ficha Impresa</label>
                     </div>
@@ -144,45 +262,41 @@ function Clientes() {
                       <div className="success" />
                     </div>
                     <div className="limite-input">
-                      <label htmlFor="credito">Limite de Crédito</label>
-                      <input name="credito" type="text" />
+                      <label htmlFor="limite">Limite de Crédito</label>
+                      <input
+                        type="text"
+                        name="limite"
+                        onChange={handleInputSbmit}
+                      />
                     </div>
                   </div>
                 </div>
                 <hr />
                 <div className="container-footer">
                   <fieldset>
-                    <legend>Informações Adicionais (Opicional)</legend>
-                    <Input
-                      name="end_entrega"
-                      type="text"
-                      placeholder="End. de Entrega"
-                    />
+                    <legend>Informações Adicionais</legend>
+                    <input type="text" placeholder="End. de Entrega" />
                     <div className="input-group">
-                      <Input name="cidade" type="text" placeholder="Cidade" />
-                      <Input name="uf" type="text" placeholder="UF" />
-                      <Input name="cep" type="text" placeholder="CEP" />
+                      <input type="text" placeholder="Cidade" />
+                      <input type="text" placeholder="UF" />
+                      <input type="text" placeholder="CEP" />
                     </div>
-                    <Input
-                      name="ponto_ref"
-                      type="text"
-                      placeholder="Ponto de Refêrencia"
-                    />
+                    <input type="text" placeholder="Ponto de Refêrencia" />
                   </fieldset>
                   <fieldset>
                     <legend>Observações</legend>
                     <textarea name="obs" id="obs" cols="10" rows="5" />
                   </fieldset>
                 </div>
+                <Footer>
+                  <button type="button" className="cancel">
+                    Cancelar
+                  </button>
+                  <button type="submit" className="submit">
+                    Cadastrar
+                  </button>
+                </Footer>
               </div>
-              <Footer>
-                <button type="button" className="cancel">
-                  Cancelar
-                </button>
-                <button type="submit" className="submit">
-                  Cadastrar
-                </button>
-              </Footer>
             </Form>
           </main>
         </Content>

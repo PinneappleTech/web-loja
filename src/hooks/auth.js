@@ -7,11 +7,11 @@ const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [data, setData] = useState(() => {
-    const token = localStorage.getItem('@annastore:token');
-    const user = localStorage.getItem('@annastore:user');
+    const token = localStorage.getItem('@annaStore:token');
+    const user = localStorage.getItem('@annaStore:user');
 
     if (token && user) {
-      return { token, userAuth: JSON.parse(user) };
+      return { token, user: JSON.parse(user) };
     }
 
     return {};
