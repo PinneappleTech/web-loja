@@ -3,19 +3,16 @@ import { Link } from 'react-router-dom';
 import { FaHome, FaBox, FaUsers, FaTools } from 'react-icons/fa';
 import { GiTakeMyMoney, GiExitDoor, GiStorkDelivery } from 'react-icons/gi';
 import { BsGraphUp } from 'react-icons/bs';
-import { IoIosPeople, IoIosDocument } from 'react-icons/io';
-import { HiDocumentReport } from 'react-icons/hi';
+import { IoIosPeople } from 'react-icons/io';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
-
-
-
-
+import { useAuth } from '../../hooks/auth';
 
 import { Logo } from '../../assets/images';
 import { Container } from './styles';
 
 function NavbarLeft() {
+  const { signOut } = useAuth();
   return (
     <Container>
       <header>
@@ -59,25 +56,7 @@ function NavbarLeft() {
           </div>
         </li>
         <li>
-          <div className="link">
-            <IoIosDocument size={20} color="#ECBA2B" />
-            <Link to="/dashboard">Referências</Link>
-          </div>
-        </li>
-        <li>
           <div>
-            <HiDocumentReport size={20} color="#ECBA2B" />
-            <Link to="/dashboard">Relatórios</Link>
-          </div>
-          <div>
-            <button type="button">
-              <MdKeyboardArrowDown size={20} color="#ECBA2B" />
-            </button>
-          </div>
-        </li>
-        <li>
-          <div>
-
             <BsGraphUp size={20} color="#ECBA2B" />
             <Link to="/dashboard">Financeiro</Link>
           </div>
@@ -89,10 +68,8 @@ function NavbarLeft() {
         </li>
         <li>
           <div>
-
             <FaTools size={20} color="#ECBA2B" />
             <Link to="/dashboard">Configurações</Link>
-
           </div>
           <div>
             <button type="button">
@@ -103,7 +80,9 @@ function NavbarLeft() {
         <li>
           <div className="link">
             <GiExitDoor size={20} color="#ECBA2B" />
-            <Link to="/">Sair</Link>
+            <Link to="/" onClick={signOut}>
+              Sair
+            </Link>
           </div>
         </li>
       </ul>

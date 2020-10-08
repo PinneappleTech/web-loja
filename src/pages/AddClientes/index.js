@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Form } from '@unform/web';
 import { ImUser } from 'react-icons/im';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 
@@ -11,6 +12,7 @@ import api from '../../services/api';
 
 function Clientes() {
   const formRef = useRef(null);
+  const history = useHistory();
   const token = localStorage.getItem('@annaStore:token');
   const [formInputData, setFormInputData] = useState({});
 
@@ -66,16 +68,15 @@ function Clientes() {
     };
 
     try {
-      const response = await api.post('/clientes/', dataSubmit, {
+      await api.post('/clientes/', dataSubmit, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-      console.log(response.data);
-      toast.success('cadastrou');
+      history.push('/clientes');
+      toast.success('Cadastro Realizado');
     } catch (error) {
-      console.log(error);
-      toast.error('Deu error');
+      toast.error('Error!, verifique seus dados e tente novamente');
     }
   };
   return (
@@ -136,7 +137,7 @@ function Clientes() {
                 <div className="input-group">
                   <input
                     type="tel"
-                    placeholder="Fone"
+                    placeholder="Telefone Fixo (Opicional)"
                     name="fone_recado"
                     onChange={handleInputSbmit}
                   />
@@ -162,7 +163,7 @@ function Clientes() {
                   </select>
                   <input
                     type="text"
-                    placeholder="Conjuge"
+                    placeholder="Conjuge (Opicional)"
                     name="conjuge"
                     onChange={handleInputSbmit}
                   />
@@ -264,16 +265,6 @@ function Clientes() {
                       />
                       <label htmlFor="suspenso">Suspenso</label>
                     </div>
-                    <div className="checkbox-input">
-                      <input
-                        type="checkbox"
-                        id="ficha-impresa"
-                        name="status"
-                        value="4"
-                        onChange={handleInputSbmit}
-                      />
-                      <label htmlFor="ficha-impresa">Ficha Impresa</label>
-                    </div>
                   </div>
                   <div className="status-limite">
                     <div className="status">
@@ -294,7 +285,7 @@ function Clientes() {
                 <hr />
                 <div className="container-footer">
                   <fieldset>
-                    <legend>Informações Adicionais</legend>
+                    <legend>Informações Adicionais (Opicional)</legend>
                     <input type="text" placeholder="End. de Entrega" />
                     <div className="input-group">
                       <input type="text" placeholder="Cidade" />

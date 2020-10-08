@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
 import { FaSearch, FaPen } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 import api from '../../services/api';
 
 import NavabarLeft from '../../components/NavbarLeft';
@@ -32,6 +33,18 @@ function Clientes() {
     };
     loadClients();
   }, [token]);
+  const handleDelete = async id => {
+    try {
+      await api.delete(`/clientes/${id}`, {
+        params: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      toast.success('Cliente excluido');
+    } catch (err) {
+      toast.error('Error ao excluir, contate os desenvolvedores');
+    }
+  };
   return (
     <>
       <Container>
@@ -82,7 +95,10 @@ function Clientes() {
                         <Actions color="#35F28E">
                           <FaPen color="#fff" size={10} />
                         </Actions>
-                        <Actions color="#EB3F3F">
+                        <Actions
+                          color="#EB3F3F"
+                          onClick={() => handleDelete(client.id)}
+                        >
                           <MdDeleteForever color="#fff" size={10} />
                         </Actions>
                       </ActionsGroup>
