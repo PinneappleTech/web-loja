@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
 import { FaSearch, FaPen } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
 import api from '../../services/api';
+import deleteItem from '../../utils/deleteitem';
 
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
@@ -15,6 +17,10 @@ import {
   TableContainer,
   ActionsGroup,
   Actions,
+  Modal,
+  ModalContainer,
+  ModalContent,
+  ModalHeader,
 } from './styles';
 
 function Clientes() {
@@ -32,6 +38,23 @@ function Clientes() {
     };
     loadClients();
   }, [token]);
+  const deleteClient = useCallback(
+    async (positionArray, clientId) => {
+      try {
+        await api.delete(`/clientes/${clientId}/`, {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        const clientsArry = deleteItem(clients, positionArray);
+        setClients(clientsArry);
+        toast.success('cliente excluido!');
+      } catch (err) {
+        toast.error('erro ao deletar');
+      }
+    },
+    [clients, token],
+  );
   return (
     <>
       <Container>
@@ -67,7 +90,7 @@ function Clientes() {
                 <th>Ações</th>
               </thead>
               <tbody>
-                {clients.map(client => (
+                {clients.map((client, index) => (
                   <tr key={client.id || '-'}>
                     <td>{client.id || '-'}</td>
                     <td>{client.nome || '-'}</td>
@@ -79,10 +102,17 @@ function Clientes() {
                         <Actions color="#B3ADAD">
                           <AiFillEye color="#fff" size={10} />
                         </Actions>
-                        <Actions color="#35F28E">
+                        <Actions
+                          color="#35F28E"
+                          data-toggle="modal"
+                          data-target="#ModalCenter"
+                        >
                           <FaPen color="#fff" size={10} />
                         </Actions>
-                        <Actions color="#EB3F3F">
+                        <Actions
+                          color="#EB3F3F"
+                          onClick={() => deleteClient(index, client.id)}
+                        >
                           <MdDeleteForever color="#fff" size={10} />
                         </Actions>
                       </ActionsGroup>
@@ -91,6 +121,35 @@ function Clientes() {
                 ))}
               </tbody>
             </TableContainer>
+
+            <Modal
+              className="modal fade"
+              id="ModalCenter"
+              role="dialog"
+              aria-labelledby="exampleModalCenterTitle"
+              aria-hidden="true"
+            >
+              <ModalContainer
+                className="modal-dialog modal-dialog-centered"
+                role="document"
+              >
+                <ModalContent className="modal-content">
+                  <ModalHeader className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLongTitle">
+                      Detalhes do Cliente
+                    </h5>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </ModalHeader>
+                </ModalContent>
+              </ModalContainer>
+            </Modal>
           </main>
         </Content>
       </Container>

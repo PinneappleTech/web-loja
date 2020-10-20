@@ -175,3 +175,22 @@ export const Actions = styled.button`
     margin: 0;
   }
 `;
+
+export const Modal = styled.div``;
+export const ModalContainer = styled.div``;
+export const ModalContent = styled.div``;
+export const ModalHeader = styled.div`
+  background: rgba(112, 112, 112, 0.2);
+  button {
+    &:hover {
+      background: #f00;
+      > span {
+        color: #fff;
+      }
+    }
+
+    > span {
+      color: #707070;
+    }
+  }
+`;
