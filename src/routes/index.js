@@ -25,7 +25,7 @@ const Routes = () => (
     <Route path="/vendas" component={Vendas} isPrivate />
     <Route path="/add-clientes" component={AddClientes} isPrivate />
     <Route path="/funcionarios" component={Funcionarios} isPrivate />
-    <Route path="/info-clientes" component={InfoClient} isPrivate />
+    <Route path="/info-clientes/:id" component={InfoClient} isPrivate />
   </Switch>
 );
 

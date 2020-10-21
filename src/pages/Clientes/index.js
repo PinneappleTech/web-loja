@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
@@ -25,6 +25,7 @@ import {
 
 function Clientes() {
   const [clients, setClients] = useState([]);
+  const history = useHistory();
   const token = localStorage.getItem('@annaStore:token');
 
   useEffect(() => {
@@ -54,6 +55,13 @@ function Clientes() {
       }
     },
     [clients, token],
+  );
+
+  const handleNavigateToInfoCliente = useCallback(
+    id => {
+      history.push(`info-clientes/${id}`);
+    },
+    [history],
   );
   return (
     <>
@@ -99,7 +107,10 @@ function Clientes() {
                     <td>{client.email || '-'}</td>
                     <td className="actions">
                       <ActionsGroup>
-                        <Actions color="#B3ADAD">
+                        <Actions
+                          color="#B3ADAD"
+                          onClick={() => handleNavigateToInfoCliente(client.id)}
+                        >
                           <AiFillEye color="#fff" size={10} />
                         </Actions>
                         <Actions
@@ -147,6 +158,9 @@ function Clientes() {
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </ModalHeader>
+                  <div className="modal-body">
+                    <p>Texto do corpo do modal, é aqui.</p>
+                  </div>
                 </ModalContent>
               </ModalContainer>
             </Modal>
