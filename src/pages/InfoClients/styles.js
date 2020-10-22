@@ -153,6 +153,19 @@ export const TableContainer = styled.table`
       }
     }
   }
+  .due-date {
+    background: ${({ theme }) => theme.colors.danger};
+    color: ${({ theme }) => theme.colors.backgroundDark};
+    font-weight: bold;
+  }
+  .pay {
+    background: ${({ theme }) => theme.colors.successDark};
+    color: ${({ theme }) => theme.colors.backgroundDark};
+    font-weight: bold;
+  }
+  .status {
+    color: ${({ theme }) => theme.colors.successDark};
+  }
 `;
 
 export const NameClient = styled.div`
@@ -185,5 +198,27 @@ export const FilterGroup = styled.div`
     > svg {
       margin-right: 0.8rem;
     }
+  }
+`;
+
+export const DebitaAdvice = styled.div`
+  margin-top: 1rem;
+  width: 44rem;
+  height: 10rem;
+  background: ${props => props.theme.colors.danger};
+  border-radius: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  > span {
+    text-align: center;
+    color: #fff;
+  }
+
+  > p {
+    text-align: center;
+    color: #fff;
   }
 `;

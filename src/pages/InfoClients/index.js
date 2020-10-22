@@ -14,6 +14,7 @@ import {
   TableContainer,
   NameClient,
   FilterGroup,
+  DebitaAdvice,
 } from './styles';
 
 function InfoClient() {
@@ -70,17 +71,64 @@ function InfoClient() {
               </thead>
               <tbody>
                 <tr>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
+                  <td>Supervisor</td>
+                  <td>050524</td>
+                  <td>03</td>
+                  <td className="due-date">29/11/2019</td>
+                  <td className="pay">20/11/2019</td>
+                  <td>71,56</td>
+                  <td>0,00</td>
+                  <td className="status">PAGO</td>
+                </tr>
+                <tr>
+                  <td>Supervisor</td>
+                  <td>050524</td>
+                  <td>03</td>
+                  <td className="due-date">29/11/2019</td>
+                  <td className="pay">20/11/2019</td>
+                  <td>71,56</td>
+                  <td>0,00</td>
+                  <td className="status">PAGO</td>
+                </tr>
+                <tr>
+                  <td>Supervisor</td>
+                  <td>050524</td>
+                  <td>03</td>
+                  <td className="due-date">29/11/2019</td>
+                  <td className="pay">20/11/2019</td>
+                  <td>71,56</td>
+                  <td>0,00</td>
+                  <td className="status">PAGO</td>
+                </tr>
+                <tr>
+                  <td>Supervisor</td>
+                  <td>050524</td>
+                  <td>03</td>
+                  <td className="due-date">29/11/2019</td>
+                  <td className="pay">20/11/2019</td>
+                  <td>71,56</td>
+                  <td>0,00</td>
+                  <td className="status">PAGO</td>
+                </tr>
+                <tr>
+                  <td>Supervisor</td>
+                  <td>050524</td>
+                  <td>03</td>
+                  <td className="due-date">29/11/2019</td>
+                  <td className="pay">20/11/2019</td>
+                  <td>71,56</td>
+                  <td>0,00</td>
+                  <td className="status">PAGO</td>
                 </tr>
               </tbody>
             </TableContainer>
+            <DebitaAdvice>
+              <span>ATENÇÃO</span>
+              <p>
+                Cliente Railson de Araujo Barros, encontra-se com um conta
+                vencida na data 25/09/2019 no valor de 71,56.{' '}
+              </p>
+            </DebitaAdvice>
           </main>
         </Content>
       </Container>
