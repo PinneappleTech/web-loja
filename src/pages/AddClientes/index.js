@@ -1,72 +1,29 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import { Form } from '@unform/web';
 import { ImUser } from 'react-icons/im';
 import { toast } from 'react-toastify';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
+import Input from '../../components/InputForm';
 
-import { Container, Content, Footer } from './styles';
+import {
+  Container,
+  Content,
+  Footer,
+  FormLeft,
+  InputGroup,
+  Legend,
+} from './styles';
 import api from '../../services/api';
 
 function Clientes() {
   const formRef = useRef(null);
   const token = localStorage.getItem('@annaStore:token');
-  const [formInputData, setFormInputData] = useState({});
-
-  const handleInputSbmit = event => {
-    const { name, value } = event.target;
-    setFormInputData({ ...formInputData, [name]: value });
-  };
 
   const handleSubmit = async () => {
-    const {
-      nome,
-      rg,
-      cpf,
-      data_nasc,
-      sexo,
-      fone_recado,
-      fone,
-      estado_civil,
-      conjuge,
-      apelido,
-      filiacao,
-      email,
-      logradouro,
-      numero,
-      cidade,
-      uf,
-      cep,
-      bairro,
-    } = formInputData;
-
-    const dataSubmit = {
-      nome,
-      rg,
-      cpf,
-      data_nasc,
-      sexo,
-      fone_recado,
-      fone,
-      estado_civil,
-      conjuge,
-      apelido,
-      filiacao,
-      email,
-      endereco: {
-        logradouro,
-        numero,
-        cidade,
-        uf,
-        cep,
-        bairro,
-      },
-      credito: 1500,
-    };
-
     try {
-      const response = await api.post('/clientes/', dataSubmit, {
+      const response = await api.post('/clientes/', {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -92,147 +49,65 @@ function Clientes() {
               <span>Adicionar Clientes</span>
             </header>
             <Form ref={formRef} onSubmit={handleSubmit}>
-              <div className="form-left">
-                <input
+              <FormLeft>
+                <Input
                   name="nome"
                   type="text"
-                  placeholder="Nome Completo"
-                  onChange={handleInputSbmit}
+                  placeholder="Ex: Maria Raimunda"
+                  label="Nome Completo"
                 />
-                <div className="input-group">
-                  <input
-                    type="text"
-                    placeholder="RG"
-                    name="rg"
-                    onChange={handleInputSbmit}
-                  />
-                  <input
+                <InputGroup>
+                  <Input type="text" placeholder="RG" name="rg" label="RG" />
+                  <Input
                     type="text"
                     placeholder="CPF/CPNJ"
                     name="cpf"
-                    onChange={handleInputSbmit}
+                    label="CPF/CPNJ"
                   />
-                </div>
-                <div className="input-group">
-                  <input
-                    type="date"
-                    placeholder="Data de Nascimento"
+                </InputGroup>
+                <InputGroup>
+                  <Input
+                    type="text"
+                    placeholder="DD/MM/AAAA"
                     name="data_nasc"
-                    onChange={handleInputSbmit}
+                    label="Data de Nascimento"
                   />
-                  <select
+                  <Input
+                    type="text"
+                    placeholder="Masculino"
                     name="sexo"
-                    id="sexo"
-                    onChange={handleInputSbmit}
-                    defaultValue=""
-                  >
-                    <option value="" selected disabled>
-                      Selecione o genero
-                    </option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
-                  </select>
-                </div>
-                <div className="input-group">
-                  <input
-                    type="tel"
-                    placeholder="Fone"
-                    name="fone_recado"
-                    onChange={handleInputSbmit}
+                    label="Sexo"
                   />
-                  <input
-                    type="tel"
-                    placeholder="Telefone"
-                    name="fone"
-                    onChange={handleInputSbmit}
-                  />
-                </div>
-                <div className="input-group">
-                  <select
+                </InputGroup>
+                <InputGroup>
+                  <Input
+                    type="text"
+                    placeholder="Casado(a)"
                     name="estado_civil"
-                    id="estado-civil"
-                    onChange={handleInputSbmit}
-                    defaultValue=""
-                  >
-                    <option value="1">Casado(a)</option>
-                    <option value="2">Divorciado(a)</option>
-                    <option value="3">Separado(a)</option>
-                    <option value="4">Solteiro(a)</option>
-                    <option value="5">Viuvo(a)</option>
-                  </select>
-                  <input
+                    label="Estado Civil"
+                  />
+                  <Input
                     type="text"
-                    placeholder="Conjuge"
+                    placeholder="Mariazinha"
                     name="conjuge"
-                    onChange={handleInputSbmit}
+                    label="Conjuge"
                   />
-                </div>
-                <div className="input-group">
-                  <input
+                </InputGroup>
+                <InputGroup>
+                  <Input
                     type="text"
-                    placeholder="Apelido"
-                    name="apelido"
-                    onChange={handleInputSbmit}
+                    placeholder="Celular"
+                    name="telefone"
+                    label="Celular"
                   />
-                  <input
+                  <Input
                     type="text"
-                    placeholder="Afiliação"
-                    name="filiacao"
-                    onChange={handleInputSbmit}
+                    placeholder="Telefone"
+                    name="phone_recado"
+                    label="Telefone"
                   />
-                </div>
-                <input
-                  type="email"
-                  placeholder="Endereço de E-mail"
-                  name="email"
-                  onChange={handleInputSbmit}
-                />
-                <div className="input-group">
-                  <input
-                    type="text"
-                    placeholder="Endereço"
-                    className="endereco"
-                    name="logradouro"
-                    onChange={handleInputSbmit}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Nº"
-                    className="number"
-                    name="numero"
-                    onChange={handleInputSbmit}
-                  />
-                </div>
-                <div className="input-group">
-                  <input
-                    type="text"
-                    placeholder="Cidade"
-                    className="cidade"
-                    name="cidade"
-                    onChange={handleInputSbmit}
-                  />
-                  <input
-                    type="text"
-                    placeholder="UF"
-                    className="uf"
-                    name="uf"
-                    onChange={handleInputSbmit}
-                  />
-                  <input
-                    type="text"
-                    placeholder="CEP"
-                    className="cep"
-                    name="cep"
-                    onChange={handleInputSbmit}
-                  />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Bairro"
-                  name="bairro"
-                  onChange={handleInputSbmit}
-                />
-              </div>
+                </InputGroup>
+              </FormLeft>
               <div className="form-right">
                 <div className="container-header">
                   <header>
@@ -245,7 +120,6 @@ function Clientes() {
                         id="ativo"
                         value="1"
                         name="status"
-                        onChange={handleInputSbmit}
                         checked
                       />
                       <label htmlFor="ativo">Ativo</label>
@@ -260,19 +134,8 @@ function Clientes() {
                         id="suspenso"
                         name="staus"
                         value="3"
-                        onChange={handleInputSbmit}
                       />
                       <label htmlFor="suspenso">Suspenso</label>
-                    </div>
-                    <div className="checkbox-input">
-                      <input
-                        type="checkbox"
-                        id="ficha-impresa"
-                        name="status"
-                        value="4"
-                        onChange={handleInputSbmit}
-                      />
-                      <label htmlFor="ficha-impresa">Ficha Impresa</label>
                     </div>
                   </div>
                   <div className="status-limite">
@@ -294,18 +157,52 @@ function Clientes() {
                 <hr />
                 <div className="container-footer">
                   <fieldset>
-                    <legend>Informações Adicionais</legend>
-                    <input type="text" placeholder="End. de Entrega" />
-                    <div className="input-group">
-                      <input type="text" placeholder="Cidade" />
-                      <input type="text" placeholder="UF" />
-                      <input type="text" placeholder="CEP" />
-                    </div>
-                    <input type="text" placeholder="Ponto de Refêrencia" />
-                  </fieldset>
-                  <fieldset>
-                    <legend>Observações</legend>
-                    <textarea name="obs" id="obs" cols="10" rows="5" />
+                    <Legend>
+                      <span>Endereço</span>
+                      <hr />
+                    </Legend>
+                    <InputGroup>
+                      <Input
+                        type="text"
+                        placeholder="CEP"
+                        name="cep"
+                        label="CEP"
+                      />
+                      <Input
+                        type="text"
+                        placeholder="UF"
+                        name="uf"
+                        label="UF"
+                      />
+                    </InputGroup>
+                    <Input
+                      type="text"
+                      placeholder="Cidade"
+                      name="cidade"
+                      label="Cidade"
+                    />
+                    <Input
+                      type="text"
+                      placeholder="Bairro"
+                      name="bairro"
+                      label="Label"
+                    />
+                    <InputGroup>
+                      <Input
+                        type="text"
+                        placeholder="Endereço"
+                        className="endereco"
+                        name="logradouro"
+                        label="Logadouro"
+                      />
+                      <Input
+                        type="text"
+                        placeholder="Nº"
+                        className="number"
+                        name="numero"
+                        label="Número"
+                      />
+                    </InputGroup>
                   </fieldset>
                 </div>
                 <Footer>

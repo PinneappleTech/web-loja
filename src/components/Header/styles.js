@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   .header-container {
-    height: 48px;
+    height: 34px;
     background: #515151;
     display: flex;
     align-items: center;
@@ -11,7 +11,7 @@ export const Container = styled.div`
 
     .header-items {
       display: flex;
-      width: 120px;
+      width: 100px;
       margin-right: 20px;
       align-items: center;
       justify-content: space-between;
@@ -27,7 +27,7 @@ export const Container = styled.div`
 
   .breacrumps-container {
     width: 100%;
-    height: 48px;
+    height: 34px;
     background: #fff;
     display: flex;
     align-items: center;

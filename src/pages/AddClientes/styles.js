@@ -8,7 +8,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 100vw;
   .main {
-    margin: 1.4rem 0.8rem;
+    margin: 1rem 0.8rem;
     border: 1px solid #515151;
     border-radius: 0.3rem 0 0 0;
     > header {
@@ -31,62 +31,11 @@ export const Content = styled.div`
       }
     }
     > form {
-      margin: 0 1.6rem;
+      margin: 0 1.2rem;
       margin-bottom: 0.8rem;
       height: 100%;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      .form-left {
-        margin-top: 1.6rem;
-        > input {
-          border: 0;
-          width: 95%;
-          height: 3.2rem;
-          border-radius: 0.4rem;
-          padding-left: 0.8rem;
-          margin-bottom: 0.8rem;
-        }
-        .input-group {
-          display: flex;
-          flex: 1;
-          margin-bottom: 0.8rem;
-          input,
-          select {
-            border: 0;
-            margin-right: 1.6rem;
-            width: 46%;
-            height: 3.2rem;
-            border-radius: 0.4rem;
-            padding: 0.8rem 0.3rem;
-          }
-          .sexo {
-            width: 10%;
-          }
-          .cep {
-            width: 13.6rem;
-          }
-          .number {
-            width: 12%;
-          }
-          .uf {
-            width: 4rem;
-          }
-          .endereco {
-            width: 80%;
-          }
-          .cidade {
-            width: 55%;
-          }
-          .sexo,
-          .cep,
-          .number,
-          .uf,
-          .endereco,
-          .cidade {
-            padding: 0.8rem 0.3rem;
-          }
-        }
-      }
+      grid-template-columns: repeat(2, 500px);
       .form-right {
         padding-left: 2.4rem;
         > .container-header {
@@ -206,11 +155,10 @@ export const Content = styled.div`
 `;
 
 export const Footer = styled.footer`
-  max-width: 100vw;
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  margin-top: 0.8rem;
+  margin-top: 2.8rem;
   button {
     width: 18rem;
     height: 4.2rem;
@@ -245,5 +193,29 @@ export const Footer = styled.footer`
     &:hover {
       background: ${darken(0.08, '#28a745')};
     }
+  }
+`;
+
+export const FormLeft = styled.div`
+  padding: 2.4rem 0;
+  div {
+    margin-bottom: 1rem;
+  }
+`;
+
+export const InputGroup = styled.div`
+  display: grid;
+  grid-template-columns: repeat(${props => props.numberItems || 2}, 1fr);
+  gap: 0.8rem;
+`;
+
+export const Legend = styled.legend`
+  display: flex;
+  align-items: center;
+
+  > hr {
+    width: 100%;
+    border-top: 0.1rem solid #3d3a3a;
+    margin-left: 0.5rem;
   }
 `;
