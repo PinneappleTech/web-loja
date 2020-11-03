@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { Link } from 'react-router-dom';
 import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
 import { FaSearch, FaPen } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
@@ -40,7 +41,7 @@ function Produtos() {
           <Header titlePage="Produtos" />
           <main className="main">
             <div className="buttons-container">
-              <button type="button">Adicionar Produtos</button>
+              <Link to="/add-products">Adicionar Produtos</Link>
             </div>
 
             <div className="box-search">

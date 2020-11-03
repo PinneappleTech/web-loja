@@ -16,7 +16,7 @@ export const Content = styled.div`
       align-items: center;
       justify-content: space-between;
 
-      button {
+      > a {
         width: 180px;
         height: 42px;
         background: #ecba2b;
@@ -26,6 +26,7 @@ export const Content = styled.div`
         box-shadow: 2px 2px 3px #00000073;
         border-radius: 3px;
         border: 0;
+        list-style: none;
 
         text-align: left;
         font-size: 12px;
