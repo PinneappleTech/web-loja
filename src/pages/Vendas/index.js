@@ -42,7 +42,7 @@ function Vendas() {
       setClientes(response.data);
     };
     loadClientes();
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     const loadVendedores = async () => {
@@ -54,7 +54,7 @@ function Vendas() {
       setVendedores(response.data);
     };
     loadVendedores();
-  }, []);
+  }, [token]);
 
   const optionsClientes = clientes.map(cliente => ({
     label: cliente.nome,
