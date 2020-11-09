@@ -4,6 +4,7 @@ import { MdPersonAdd, MdDeleteForever } from 'react-icons/md';
 import { FaSearch, FaPen } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
 
+import { Link } from 'react-router-dom';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 
@@ -18,10 +19,10 @@ import api from '../../services/api';
 
 function Funcionarios() {
   const [empoyllers, setEmpoyllers] = useState([]);
-  const token = localStorage.getItem('@anastore/token');
+  const token = localStorage.getItem('@annaStore:token');
 
   useEffect(() => {
-    const loadProducts = async () => {
+    const loadUsers = async () => {
       const response = await api.get('/usuarios/', {
         headers: {
           Authorization: `Token ${token}`,
@@ -29,7 +30,7 @@ function Funcionarios() {
       });
       setEmpoyllers(response.data);
     };
-    loadProducts();
+    loadUsers();
   }, [token]);
   return (
     <>
@@ -38,10 +39,10 @@ function Funcionarios() {
         <Content>
           <Header titlePage="Funcionários" />
           <main className="main">
-            <button type="button">
+            <Link to="/add-funcionarios">
               <MdPersonAdd size={20} color="#515151" />
               Adicionar Funcionários
-            </button>
+            </Link>
             <div className="box-search">
               <header>
                 <div>
@@ -70,7 +71,7 @@ function Funcionarios() {
                     <td>{empoylle.id}</td>
                     <td>{empoylle.first_name}</td>
                     <td>{empoylle.tipo_usuario}</td>
-                    <td>{empoylle.is_active}</td>
+                    <td>{empoylle.is_active ? 'Ativo' : 'Inativo'}</td>
                     <td className="actions">
                       <ActionsGroup>
                         <Actions color="#B3ADAD">

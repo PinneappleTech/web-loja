@@ -1,11 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { Form } from '@unform/web';
+import { Scope } from '@unform/core';
+import Axios from 'axios';
 import { ImUser } from 'react-icons/im';
+import { IoMdArrowDropdown } from 'react-icons/io';
 import { toast } from 'react-toastify';
+import { unMaskedTextValue } from '../../utils/unMasked';
 import NavabarLeft from '../../components/NavbarLeft';
 import Header from '../../components/Header';
 import Input from '../../components/InputForm';
+import Select from '../../components/Select';
 
 import {
   Container,
@@ -19,11 +24,42 @@ import api from '../../services/api';
 
 function Clientes() {
   const formRef = useRef(null);
+  // const [cep, setCep] = useState('');
+  const [endereco, setEndereco] = useState({});
   const token = localStorage.getItem('@annaStore:token');
 
-  const handleSubmit = async () => {
+  const handleSearchEndreco = async valor => {
+    const cep = unMaskedTextValue(valor);
+    console.log(cep);
     try {
-      const response = await api.post('/clientes/', {
+      const response = await Axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      console.log(response.data);
+      setEndereco(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit = async data => {
+    console.log(data);
+    const { cpf } = data;
+    const { cep } = data.endereco;
+    const unMaskedCPF = unMaskedTextValue(cpf);
+    const unMaskedCEP = unMaskedTextValue(cep);
+    const newData = Object.assign(data, {
+      cpf: String(unMaskedCPF),
+      endereco: {
+        cep: String(unMaskedCEP),
+        uf: 'MA',
+        cidade: endereco.localidade,
+        bairro: endereco.bairro,
+        logradouro: endereco.logradouro,
+      },
+      credito: 1.5,
+    });
+    console.log(newData);
+    try {
+      const response = await api.post('/clientes/', newData, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -57,34 +93,50 @@ function Clientes() {
                   label="Nome Completo"
                 />
                 <InputGroup>
-                  <Input type="text" placeholder="RG" name="rg" label="RG" />
+                  <Input
+                    type="text"
+                    placeholder="RG"
+                    name="rg"
+                    label="RG"
+                    mask="rg"
+                  />
                   <Input
                     type="text"
                     placeholder="CPF/CPNJ"
                     name="cpf"
-                    label="CPF/CPNJ"
+                    label="CPF"
+                    mask="cpf"
                   />
                 </InputGroup>
                 <InputGroup>
                   <Input
-                    type="text"
+                    type="date"
                     placeholder="DD/MM/AAAA"
                     name="data_nasc"
                     label="Data de Nascimento"
                   />
-                  <Input
-                    type="text"
-                    placeholder="Masculino"
+                  <Select
                     name="sexo"
+                    placeholder="Selecione o sexo"
                     label="Sexo"
+                    options={[
+                      { label: 'Masculino', value: 'M' },
+                      { label: 'Femenino', value: 'F' },
+                    ]}
+                    icon={IoMdArrowDropdown}
                   />
                 </InputGroup>
                 <InputGroup>
-                  <Input
-                    type="text"
-                    placeholder="Casado(a)"
+                  <Select
                     name="estado_civil"
-                    label="Estado Civil"
+                    placeholder="Selecione o Estado Civíl"
+                    label="Estado Civíl"
+                    options={[
+                      { label: 'Casado(a)', value: '1' },
+                      { label: 'Solteiro(a)', value: '4' },
+                      { label: 'Divorciado(a)', value: '2' },
+                      { label: 'Viúvo(a)', value: '5' },
+                    ]}
                   />
                   <Input
                     type="text"
@@ -97,7 +149,7 @@ function Clientes() {
                   <Input
                     type="text"
                     placeholder="Celular"
-                    name="telefone"
+                    name="fone"
                     label="Celular"
                   />
                   <Input
@@ -161,48 +213,56 @@ function Clientes() {
                       <span>Endereço</span>
                       <hr />
                     </Legend>
-                    <InputGroup>
+                    <Scope path="endereco">
+                      <InputGroup>
+                        <Input
+                          type="text"
+                          placeholder="CEP"
+                          name="cep"
+                          label="CEP"
+                          mask="cep"
+                          onChange={e => handleSearchEndreco(e.target.value)}
+                        />
+                        <Input
+                          type="text"
+                          placeholder="UF"
+                          name="uf"
+                          label="UF"
+                          defaultValue="MA"
+                        />
+                      </InputGroup>
                       <Input
                         type="text"
-                        placeholder="CEP"
-                        name="cep"
-                        label="CEP"
+                        placeholder="Cidade"
+                        name="cidade"
+                        label="Cidade"
+                        defaultValue={endereco.localidade}
                       />
                       <Input
                         type="text"
-                        placeholder="UF"
-                        name="uf"
-                        label="UF"
+                        placeholder="Bairro"
+                        name="bairro"
+                        label="Bairro"
+                        defaultValue={endereco.bairro}
                       />
-                    </InputGroup>
-                    <Input
-                      type="text"
-                      placeholder="Cidade"
-                      name="cidade"
-                      label="Cidade"
-                    />
-                    <Input
-                      type="text"
-                      placeholder="Bairro"
-                      name="bairro"
-                      label="Label"
-                    />
-                    <InputGroup>
-                      <Input
-                        type="text"
-                        placeholder="Endereço"
-                        className="endereco"
-                        name="logradouro"
-                        label="Logadouro"
-                      />
-                      <Input
-                        type="text"
-                        placeholder="Nº"
-                        className="number"
-                        name="numero"
-                        label="Número"
-                      />
-                    </InputGroup>
+                      <InputGroup>
+                        <Input
+                          type="text"
+                          placeholder="Endereço"
+                          className="endereco"
+                          name="logradouro"
+                          label="Logadouro"
+                          defaultValue={endereco.logradouro}
+                        />
+                        <Input
+                          type="text"
+                          placeholder="Nº"
+                          className="number"
+                          name="numero"
+                          label="Número"
+                        />
+                      </InputGroup>
+                    </Scope>
                   </fieldset>
                 </div>
                 <Footer>

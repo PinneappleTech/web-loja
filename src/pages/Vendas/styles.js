@@ -118,32 +118,15 @@ export const TopForm = styled.div`
 
   .input-text {
     display: flex;
+    align-items: center;
+    width: 80%;
     > label {
       font-size: 1.6rem;
       color: #707070;
+      margin-right: 0.8rem;
     }
-    > input {
-      width: 26.2rem;
-      height: 3rem;
-      border: 0;
-
-      margin-left: 0.8rem;
-    }
-    button {
-      width: 2.4rem;
-      height: 3rem;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #515151;
-      border: 0;
-      border-radius: 0 0.5rem 0.5rem 0;
-      outline: 0;
-
-      > svg {
-        stroke: #ecba2b;
-      }
+    > div {
+      width: 100%;
     }
   }
 
@@ -190,29 +173,29 @@ export const FooterForm = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  .item,
-  .qtde,
-  .cod,
-  .price {
-    label {
-      font-size: 1.6rem;
-      color: #707070;
-    }
-    input {
-      margin-left: 0.8rem;
-      width: 7.6rem;
-      border: 0;
-    }
+  button {
+    width: 180px;
+    height: 42px;
+    background: #28a745;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 3px #00000073;
+    border-radius: 3px;
+    border: 0;
+
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    transition: background 0.2s;
   }
-  .categ {
-    label {
+
+  .input-text {
+    > label {
       font-size: 1.6rem;
       color: #707070;
-    }
-    input {
-      margin-left: 0.8rem;
-      width: 23rem;
-      border: 0;
+      margin-right: 0.8rem;
     }
   }
 `;
@@ -221,7 +204,7 @@ export const Table = styled.table`
   width: 100%;
   thead {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 
     th {
       border: 0.1rem solid #000;
@@ -236,7 +219,7 @@ export const Table = styled.table`
   }
   tr {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     background: #fff;
 
     td {
@@ -249,5 +232,16 @@ export const Table = styled.table`
         border-left: none;
       }
     }
+  }
+`;
+
+export const TotalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 1.2rem;
+  span {
+    font-size: 3.2rem;
+    color: #000;
   }
 `;

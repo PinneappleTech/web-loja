@@ -14,6 +14,7 @@ import Funcionarios from '../pages/Funcionarios';
 import AddClientes from '../pages/AddClientes';
 import InfoClient from '../pages/InfoClients';
 import AddProducts from '../pages/AddProdutos';
+import AddFuncionarios from '../pages/AddFuncionarios';
 
 const Routes = () => (
   <Switch>
@@ -28,6 +29,7 @@ const Routes = () => (
     <Route path="/funcionarios" component={Funcionarios} isPrivate />
     <Route path="/info-clientes/:id" component={InfoClient} isPrivate />
     <Route path="/add-products" component={AddProducts} isPrivate />
+    <Route path="/add-funcionarios" component={AddFuncionarios} isPrivate />
   </Switch>
 );
 

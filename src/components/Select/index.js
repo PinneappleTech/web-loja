@@ -56,7 +56,7 @@ const Select = ({ name, icon: Icon, options, label, placeholder, ...rest }) => {
             </option>
           )}
           {options.map(option => (
-            <option key={option.value} value={option.value}>
+            <option key={option.label} value={option.value}>
               {option.label}
             </option>
           ))}

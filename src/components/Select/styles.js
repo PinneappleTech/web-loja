@@ -18,7 +18,7 @@ export const SelectConatiner = styled.div`
   flex: 1;
   flex-direction: row;
 
-  padding: 0.5rem 0.8rem;
+  padding-left: 0.5rem;
   border-radius: 0.5rem;
   border: 0.1rem solid #707070;
   font-size: 1.6rem;
@@ -45,9 +45,7 @@ export const SelectConatiner = styled.div`
     ${props =>
       props.isErrored &&
       css`
-        select {
-          border: 0.1rem solid ${({ theme }) => theme.colors.dangerDark};
-        }
+        border: 0.1rem solid ${({ theme }) => theme.colors.dangerDark};
       `}
   ${props =>
     props.isFocused &&
@@ -65,6 +63,11 @@ export const SelectConatiner = styled.div`
       }
     `}
 `;
-export const IconContainer = styled.div``;
+export const IconContainer = styled.div`
+  margin: 0;
+  padding: 0;
+`;
 
-export const Error = styled.span``;
+export const Error = styled.span`
+  color: ${({ theme }) => theme.colors.dangerDark};
+`;
